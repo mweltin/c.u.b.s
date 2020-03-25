@@ -9,7 +9,7 @@ def setup_args():
     parser = argparse.ArgumentParser(description="Download retrosheet.org event files by year.")
     parser.add_argument("-e", type=int, help="End year, four digit year default 1918", metavar='')
     parser.add_argument("-d", type=str, help="Directory where files should be saved", metavar='')
-    parser.add_argument("-s", type=int, help="Snd year, four digit year default this year", metavar='')
+    parser.add_argument("-s", type=int, help="Start year, four digit year default this year", metavar='')
     return parser
 
 
@@ -34,18 +34,31 @@ class validateArgs:
     def validate(self):
         if not isinstance(self.start_year, int):
             raise Exception("Start year must be an integer")
+
         if not isinstance(self.end_year, int):
             raise Exception("End year must be an integer")
+
+        if self.start_year < 1918:
+            raise Exception("Start year must be equal to or greater than 1918")
+
         if self.start_year > self.end_year:
             raise Exception("Start year must be less than or equal to end year")
+
+        if self.end_year > int(date.today().strftime('%Y')):
+            raise Exception("End year can not exceed current year")
+
         if not os.access(self.destination_dir, os.W_OK):
-            raise Exception("You can not write to ")
+            raise Exception("You can not write to " + self.destination_dir)
 
 
 def main():
     parser = setup_args()
     args = parser.parse_args()
-    params = validateArgs(args)
+    try:
+        params = validateArgs(args)
+    except Exception as error:
+        print(error)
+        exit(1)
 
     for year in range(params.start_year, params.end_year, 1):
         year = str(year)
