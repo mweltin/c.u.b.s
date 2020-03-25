@@ -60,7 +60,7 @@ def main():
         print(error)
         exit(1)
 
-    for year in range(params.start_year, params.end_year, 1):
+    for year in range(params.start_year, params.end_year+1, 1):
         year = str(year)
         file_name = params.destination_dir + '/' + year + 'event.zip'
         url = params.base_url + 'events/' + year + 'eve.zip'
