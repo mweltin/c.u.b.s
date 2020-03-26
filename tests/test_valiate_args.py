@@ -1,7 +1,7 @@
 import fetch_retrosheet_events
 import unittest
 import datetime
-
+import constants
 
 class TestValidateArgs(unittest.TestCase):
 
@@ -13,7 +13,7 @@ class TestValidateArgs(unittest.TestCase):
 
         self.assertEqual(args.start_year, 1918, "start year does not default to 1918")
         self.assertEqual(args.end_year, this_year, "end year does not this year")
-        self.assertEqual(args.destination_dir, '.', "default destination is not current directory")
+        self.assertEqual(args.destination_dir, constants.RETRO_DATA_DIR, "default destination is not current directory")
 
     def test_start_year_less_than_1918_raises_exception(self):
         test_object = type('request', (), {})()

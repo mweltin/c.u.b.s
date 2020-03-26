@@ -3,7 +3,7 @@ import os
 from datetime import date
 import argparse
 import requests
-
+import constants
 
 def setup_args():
     parser = argparse.ArgumentParser(description="Download retrosheet.org event files by year.")
@@ -28,7 +28,7 @@ class validateArgs:
         if hasattr(args, 'd'):
             self.destination_dir = args.d
         else:
-            self.destination_dir = '.'
+            self.destination_dir = constants.RETRO_DATA_DIR
         self.validate()
 
     def validate(self):
@@ -52,6 +52,14 @@ class validateArgs:
 
 
 def main():
+    # make sure the constants are configured correctly
+    try:
+        constants.main()
+    except Exception as exp:
+        print("You have an error in you constants file.  Correct that before continuing")
+        print(exp.args[0])
+        exit(1)
+
     parser = setup_args()
     args = parser.parse_args()
     try:
