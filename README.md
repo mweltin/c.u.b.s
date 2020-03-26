@@ -7,4 +7,6 @@ ports some of the more useful hacks I found in that book to python 3.
 
 **Dependencies**
  - Python 3
- - Postgres
+ - Postgres 10+
+ - [Retro Sheet Tools](https://www.retrosheet.org/tools.htm)
+ - wine 3.0+ (windows emulator for linux)
