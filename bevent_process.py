@@ -29,12 +29,10 @@ def main():
         with ZipFile(file, 'r') as zipObj:
             zipObj.extractall(storage_dir)
 
-        for event_file in glob.glob(storage_dir + '/' + "*.EVA"):
-            os.chdir(storage_dir)
-            os.path.splitext(file)
-
-            myoutput = open(os.path.splitext(file)[0] + '.csv', 'w')
-
+        os.chdir(storage_dir)
+        for event_file in glob.glob(storage_dir + '/' + "*.EV*"):
+            output_file = os.path.splitext(event_file)[0]
+            myoutput = open(output_file + '.csv', 'w')
             subprocess.Popen(["wine", constants.RETRO_TOOL_DIR + "/BEVENT.EXE", "-y", year, "-f", "0-96", event_file],
                              stdout=myoutput, stderr=subprocess.PIPE,
                              universal_newlines=True)
