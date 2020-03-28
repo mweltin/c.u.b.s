@@ -5,8 +5,11 @@ import subprocess
 import constants
 
 
-def main():
-    # verify the constants have been defined correctly
+def main() -> None:
+    """
+    Take event files downloaded by fetch_retrosheet_events.py and convert them to CSV files.
+    :return: None
+    """
     try:
         constants.main()
     except Exception as exp:

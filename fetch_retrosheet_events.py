@@ -5,7 +5,12 @@ import argparse
 import requests
 import constants
 
-def setup_args():
+
+def setup_args() -> argparse.ArgumentParser:
+    """
+    Create and return parsers for fetch_retrosheet_events.py command line arguments
+    :return: argparse.ArgumentParser
+    """
     parser = argparse.ArgumentParser(description="Download retrosheet.org event files by year.")
     parser.add_argument("-e", type=int, help="End year, four digit year default 1918", metavar='')
     parser.add_argument("-d", type=str, help="Directory where files should be saved", metavar='')
@@ -15,7 +20,11 @@ def setup_args():
 
 class validateArgs:
 
-    def __init__(self, args):
+    def __init__(self, args) -> None:
+        """
+        Accept command line arguments and set default values for arguments not defined at the command line.
+        :param args: arguments passed via the command line
+        """
         self.base_url = 'http://www.retrosheet.org/'
         if hasattr(args, 's'):
             self.start_year = args.s
@@ -31,7 +40,12 @@ class validateArgs:
             self.destination_dir = constants.RETRO_DATA_DIR
         self.validate()
 
-    def validate(self):
+    def validate(self) -> None:
+        """
+        Ensure all arguments used in main are defined and have a sensible value.  This function does not return
+        any value.  It is designed to fail hard by raising an exception in the event of a misconfiguration.
+        :return: None
+        """
         if not isinstance(self.start_year, int):
             raise Exception("Start year must be an integer")
 
@@ -51,7 +65,11 @@ class validateArgs:
             raise Exception("You can not write to " + self.destination_dir)
 
 
-def main():
+def main() -> None:
+    """
+    Download retrosheet event (zip) files
+    :return: None
+    """
     # make sure the constants are configured correctly
     try:
         constants.main()
@@ -68,7 +86,7 @@ def main():
         print(error)
         exit(1)
 
-    for year in range(params.start_year, params.end_year+1, 1):
+    for year in range(params.start_year, params.end_year + 1, 1):
         year = str(year)
         file_name = params.destination_dir + '/' + year + 'event.zip'
         url = params.base_url + 'events/' + year + 'eve.zip'

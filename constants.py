@@ -11,7 +11,6 @@ DB_HOST = 'localhost'
 DB_USER = 'bbhip'
 DB = 'bbhip'
 # see README for password configuration instructions
-
 # End of user defined constants section
 
 def main() -> None:
@@ -64,6 +63,7 @@ def main() -> None:
     except Exception as e:
         print("Problemis creating or destroying databases")
         print(e)
+
 
 if __name__ == "__main__":
     main()
