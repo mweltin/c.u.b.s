@@ -52,6 +52,7 @@ def main() -> None:
     try:
         connect_str = "user='bbhip' host='localhost' dbname='template1'"
         conn = psycopg2.connect(connect_str)
+        conn.set_isolation_level(psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT)
         cursor = conn.cursor()
     except Exception as e:
         print("Problem connecting to database")
