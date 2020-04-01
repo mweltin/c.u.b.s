@@ -10,6 +10,8 @@ ports some of the more useful hacks I found in that book to python.
  - Postgres 10+
  - [Retro Sheet Tools](https://www.retrosheet.org/tools.htm)
  - wine 3.0+ (windows emulator for linux)
+ - angular 8+
+ - apache 2.4+
  
 
 **Database configuraiton**
@@ -33,4 +35,38 @@ $ chmod 400 ~/.pgpass
 The information used here was obtained free of
 charge from and is copyrighted by Retrosheet.  Interested
 parties may contact Retrosheet at "www.retrosheet.org".
- 
+
+
+**Apache 2.4+ configuration**
+
+Install mod-rewrite
+
+Add a virtual host config file 
+<VirtualHost *:80>
+    DocumentRoot "/home/mweltin/PycharmProjects/baseballHacksInPython/bbhip/dist/bbhip"
+    ServerName bbhip.localhost
+    RewriteEngine On
+    # If an existing asset or directory is requested go to it as it is
+    RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} -f [OR]
+    RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} -d
+    RewriteRule ^ - [L]
+
+    # If the requested resource doesn't exist, use index.html
+    RewriteRule ^ /index.html
+
+    <Directory /home/mweltin/PycharmProjects/baseballHacksInPython/bbhip/dist/bbhip>
+        AllowOverride All
+        Require all granted
+    </Directory>
+
+    <Directory /home/mweltin/PycharmProjects/baseballHacksInPython/bbhip/src/cgi>
+        Options +ExecCGI
+        AddHandler cgi-script .py
+    </Directory>
+
+</VirtualHost>
+
+restart apache
+
+**TODO**  
+Either create a container (docker) or script install with Ansible
