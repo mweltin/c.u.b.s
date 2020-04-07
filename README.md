@@ -12,6 +12,7 @@ ports some of the more useful hacks I found in that book to python.
  - wine 3.0+ (windows emulator for linux)
  - angular 8+
  - apache 2.4+
+ - mod_wsgi
  
 
 **Database configuraiton**
@@ -42,29 +43,28 @@ parties may contact Retrosheet at "www.retrosheet.org".
 Install mod-rewrite
 
 Add a virtual host config file 
+```
 <VirtualHost *:80>
     DocumentRoot "/home/mweltin/PycharmProjects/baseballHacksInPython/bbhip/dist/bbhip"
-    ServerName bbhip.localhost
-    RewriteEngine On
-    # If an existing asset or directory is requested go to it as it is
-    RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} -f [OR]
-    RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} -d
-    RewriteRule ^ - [L]
-
-    # If the requested resource doesn't exist, use index.html
-    RewriteRule ^ /index.html
+    ServerName bbhip.local
 
     <Directory /home/mweltin/PycharmProjects/baseballHacksInPython/bbhip/dist/bbhip>
         AllowOverride All
         Require all granted
     </Directory>
 
-    <Directory /home/mweltin/PycharmProjects/baseballHacksInPython/bbhip/src/cgi>
-        Options +ExecCGI
-        AddHandler cgi-script .py
+    WSGIDaemonProcess mweltin user=mweltin python-home=/home/mweltin/PycharmProjects/baseballHacksInPython/venv python-path=/home/mweltin/PycharmProjects/baseballHacksInPython
+    WSGIProcessGroup mweltin
+    WSGIApplicationGroup %{GLOBAL}
+
+    WSGIScriptAlias "/cgi/" "/home/mweltin/PycharmProjects/baseballHacksInPython/cgi/"
+    <Directory /home/mweltin/PycharmProjects/baseballHacksInPython/cgi>
+        Require all granted
     </Directory>
 
 </VirtualHost>
+```
+
 
 restart apache
 

@@ -1,30 +1,38 @@
-#!/home/mweltin/PycharmProjects/baseballHacksInPython/venv/bin/python3
-python_home = '/home/mweltin/PycharmProjects/baseballHacksInPython/venv'
-import sys
-import site
-# Calculate path to site-packages directory.
-python_version = '.'.join(map(str, sys.version_info[:2]))
-site_packages = python_home + '/lib/python%s/site-packages' % python_version
-# Add the site-packages directory.
-site.addsitedir(site_packages)
-site.addsitedir('/home/mweltin/PycharmProjects/baseballHacksInPython')
-sys.base_prefix = sys.prefix
-sys.base_exec_prefix = sys.exec_prefix
-print("Content-type:application/json\r\n\r\n")
-
+from os import environ
+import psycopg2
+import constants
+import json
+import cgi
 import psycopg2
 import constants
 import json
 
-# -*- coding: UTF-8 -*-# enable debugging
-player_query = "SELECT * FROM player"
-connect_str = "user='" + constants.DB_USER + "' host='" + constants.DB_HOST + "' dbname='" + constants.DB + "' password="
-conn = psycopg2.connect(connect_str)
-conn.set_isolation_level(psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT)
-cursor = conn.cursor()
-cursor.execute(player_query)
 
-r = [dict((cursor.description[i][0], value) for i, value in enumerate(row)) for row in cursor.fetchall()]
+def start_response(status, headers):
+    response_status = []
+    response_headers = []
+    status = status.split(' ', 1)
+    response_status.append((int(status[0]), status[1]))
+    response_headers.append(dict(headers))
 
-print(json.dumps(r, default=str))
-exit()
+
+def application(environ, start_response) -> list:
+    status = '200 OK'
+    headers = [('Content-type', 'application/json')]
+    start_response(status, headers)
+
+    # -*- coding: UTF-8 -*-# enable debugging
+    player_query = "SELECT * FROM player"
+    connect_str = "user='" + constants.DB_USER + "' host='" + constants.DB_HOST + "' dbname='" + constants.DB + "' password="
+    conn = psycopg2.connect(connect_str)
+    conn.set_isolation_level(psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT)
+    cursor = conn.cursor()
+    cursor.execute(player_query)
+
+    r = [dict((cursor.description[i][0], value) for i, value in enumerate(row)) for row in cursor.fetchall()]
+    a = bytes(json.dumps(r, default=str), encoding='utf-8')
+    return [a]
+
+
+if __name__ == "__main__":
+    application(environ, start_response)
