@@ -18,6 +18,7 @@
     "@angular/forms": "~9.1.0",
     "@angular/platform-browser": "~9.1.0",
     "@angular/platform-browser-dynamic": "~9.1.0",
+    "@ng-bootstrap/ng-bootstrap": "^6.0.2",
     "bootstrap": "^4.4.1",
     "rxjs": "~6.5.4",
     "rxjs-compat": "^6.5.4",
