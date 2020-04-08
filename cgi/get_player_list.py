@@ -2,10 +2,6 @@ from os import environ
 import psycopg2
 import constants
 import json
-import cgi
-import psycopg2
-import constants
-import json
 
 
 def start_response(status, headers):

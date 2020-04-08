@@ -1,5 +1,5 @@
 import { Component, OnInit, Injectable } from '@angular/core';
-import { Player } from '../player';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-player',
@@ -13,7 +13,11 @@ import { Player } from '../player';
 
 export class PlayerComponent implements OnInit {
 
-  constructor() { }
+  player_id: number;
+
+  constructor(private actRoute: ActivatedRoute) {
+    this.player_id = this.actRoute.snapshot.params.player_id;
+  }
 
   ngOnInit(): void {
   }

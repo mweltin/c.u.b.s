@@ -1,11 +1,19 @@
 <div class="rs-header">Baseball data viewer</div>
 <div class="content" role="main">
-
-  <span>{{ title }} app is running!</span>
-  <div>Please select a player from the list below.</div>
-  <li *ngFor="let player of players">
-    {{player.first}} {{ player.last}}
-  </li>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm">
+        <div>Please select a player from the list below.</div>
+        <li *ngFor="let player of players">
+          <a [routerLink]="['/player', player.player_id]" class="btn btn-danger">{{player.first}} {{ player.last}}</a>
+        </li>
+      </div>
+      <div class="col-sm">
+        <div>
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<router-outlet></router-outlet>
