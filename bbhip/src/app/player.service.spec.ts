@@ -26,7 +26,7 @@ it('can fetch player list', () => {
   	 id: 'alberta103',
   	 last: 'Almora',
   	 first: 'Albert',
-  	 play_debut: new Date(3-1-2016), 
+  	 play_debut: new Date(3-1-2016),
   	 mgr_debut: null,
   	 coach_debut: null,
   	 ump_debut: null
@@ -54,7 +54,7 @@ it('can fetch data for a single player ', () => {
   	 id: 'alberta103',
   	 last: 'Almora',
   	 first: 'Albert',
-  	 play_debut: new Date(3-1-2016), 
+  	 play_debut: new Date(3-1-2016),
   	 mgr_debut: null,
   	 coach_debut: null,
   	 ump_debut: null

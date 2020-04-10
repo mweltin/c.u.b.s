@@ -1,8 +1,6 @@
 import psycopg2
 import constants
-import glob
 import csv
-import os
 
 
 def main() -> None:
@@ -19,7 +17,7 @@ def main() -> None:
 
     connect_str = "user='bbhip' host='localhost' dbname='bbhip'"
     conn = psycopg2.connect(connect_str)
-    conn.set_isolation_level(psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT)
+    conn.autocommit = True
     cursor = conn.cursor()
 
     insert_player_query = """
@@ -50,7 +48,12 @@ def main() -> None:
             for i in range(len(insert_data)):
                 if insert_data[i] == '':
                     insert_data[i] = None
-            cursor.execute(insert_player_query, insert_data[0:-1])
+            print(insert_data[0:-1])
+            try:
+                cursor.execute(insert_player_query, insert_data[0:-1])
+            except Exception as exp:
+                print("problem inserting data")
+                print(exp.args[0])
     print("Finished processing file: " + file)
 
 

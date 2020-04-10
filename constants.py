@@ -65,6 +65,8 @@ def main() -> None:
         print("Problemis creating or destroying databases")
         print(e)
 
+    conn.close()
+    cursor.close()
 
 if __name__ == "__main__":
     main()

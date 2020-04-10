@@ -1,0 +1,19 @@
+CREATE UNIQUE INDEX IF NOT EXISTS player_idx ON player (id);
+
+ALTER TABLE event
+ADD CONSTRAINT batter_fk
+FOREIGN KEY (batter)
+REFERENCES player(id)
+ON DELETE CASCADE;
+
+ALTER TABLE event
+ADD CONSTRAINT pitcher_fk
+FOREIGN KEY (pitcher)
+REFERENCES player(id)
+ON DELETE CASCADE;
+
+ALTER TABLE event
+ADD CONSTRAINT catcher_fk
+FOREIGN KEY (catcher)
+REFERENCES player(id)
+ON DELETE CASCADE;
