@@ -1,28 +1,27 @@
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import {HttpClientModule} from '@angular/common/http';
-import {HttpTestingController} from '@angular/common/http/testing';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { PlayerService } from './player.service';
 import { Player } from './player';
 
-describe('PlayerService', () => {
+describe('HttpClient testing', () => {
+  let httpClient: HttpClient;
+  let httpTestingController: HttpTestingController;
   let service: PlayerService;
-  let httpMock: HttpTestingController;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-	imports: [HttpClientModule],
-	providers: [PlayerService]
+      imports: [ HttpClientTestingModule ],
+      providers: [PlayerService]
     });
+
+    httpClient = TestBed.inject(HttpClient);
+    httpTestingController = TestBed.inject(HttpTestingController);
     service = TestBed.inject(PlayerService);
-    httpMock = TestBed.get(HttpTestingController);
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
-
-  it('should be able to retrieve a list of all mlb players', () => {
-    const test_players: Player[] = [{
+it('can test HttpClient.get', () => {
+    const testData: Player[] = [{
   	 player_id: 10,
   	 id: 'alberta103',
   	 last: 'Almora',
@@ -31,13 +30,27 @@ describe('PlayerService', () => {
   	 mgr_debut: null,
   	 coach_debut: null,
   	 ump_debut: null
-     }];
-      service.getPlayerList().subscribe(posts => {
-    	expect(posts.length).toBe(1);
-    	expect(posts).toEqual(test_players);
-      });
-     const request = httpMock.expectOne( '/cgi/get_player_list.py' );
-     expect(request.request.method).toBe('GET');
-     request.flush(test_players);
+   }];
+
+  service.getPlayerList().subscribe(post => {
+  	expect(post.length).toBe(1);
+  	expect(post).toEqual(testData);
   });
+
+  const req = httpTestingController.expectOne('cgi/get_player_list.py');
+
+  expect(req.request.method).toEqual('GET');
+
+  // Respond with mock data, causing Observable to resolve.
+  // Subscribe callback asserts that correct data was returned.
+  req.flush(testData);
+
+  httpTestingController.verify();
+});
+
+afterEach(() => {
+  // After every test, assert that there are no more pending requests.
+  httpTestingController.verify();
+});
+
 });
