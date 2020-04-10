@@ -19,7 +19,7 @@ export class PlayerService {
   }
 
   getPlayer(id: number): Observable<Player> {
-    const url = `${this.playerUrl}/?player_id=${id}`;
+    const url = `${this.playerUrl}?player_id=${id}`;
     return this.http.get<Player>(url);
   }
 }
