@@ -11,10 +11,10 @@ def setup_args() -> argparse.ArgumentParser:
     Create and return parsers for fetch_retrosheet_events.py command line arguments
     :return: argparse.ArgumentParser
     """
-    parser = argparse.ArgumentParser(description="Download retrosheet.org event files by year.")
-    parser.add_argument("-s", type=int, help="Start year, four digit year default 1918", metavar='')
-    parser.add_argument("-d", type=str, help="Directory where files should be saved", metavar='')
-    parser.add_argument("-e", type=int, help="End year, four digit year default this year", metavar='')
+    parser = argparse.ArgumentParser(description="Download retrosheet.org game files by year.")
+    parser.add_argument('-s', type=int, help="Start year, four digit year default 1871", metavar='')
+    parser.add_argument('-d', type=str, help="Directory where files should be saved", metavar='')
+    parser.add_argument('-e', type=int, help="End year, four digit year default this year", metavar='')
     return parser
 
 
@@ -25,16 +25,16 @@ class validateArgs:
         Accept command line arguments and set default values for arguments not defined at the command line.
         :param args: arguments passed via the command line
         """
-        self.base_url = 'http://www.retrosheet.org/'
+        self.base_url = 'http://www.retrosheet.org/gamelogs'
         if args.s:
             self.start_year = args.s
         else:
-            self.start_year = 1918
+            self.start_year = 1871
         if args.e:
             self.end_year = args.e
         else:
             self.end_year = int(date.today().strftime('%Y'))
-        if args.e:
+        if args.d:
             self.destination_dir = args.d
         else:
             self.destination_dir = constants.RETRO_DATA_DIR
@@ -52,8 +52,8 @@ class validateArgs:
         if not isinstance(self.end_year, int):
             raise Exception("End year must be an integer")
 
-        if self.start_year < 1918:
-            raise Exception("Start year must be equal to or greater than 1918")
+        if self.start_year < 1871:
+            raise Exception("Start year must be equal to or greater than 1871")
 
         if self.start_year > self.end_year:
             raise Exception("Start year must be less than or equal to end year")
@@ -67,7 +67,7 @@ class validateArgs:
 
 def main() -> None:
     """
-    Download retrosheet event (zip) files
+    Download retrosheet game (zip) files
     :return: None
     """
     # make sure the constants are configured correctly
@@ -88,8 +88,8 @@ def main() -> None:
 
     for year in range(params.start_year, params.end_year + 1, 1):
         year = str(year)
-        file_name = params.destination_dir + '/' + year + 'event.zip'
-        url = params.base_url + 'events/' + year + 'eve.zip'
+        file_name = params.destination_dir + '/gl' + year + '.zip'
+        url = params.base_url + '/gl' + year + '.zip'
         print("Fetching " + file_name)
         req = requests.get(url)
         file = open(file_name, 'wb')

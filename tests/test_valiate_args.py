@@ -8,6 +8,9 @@ class TestValidateArgs(unittest.TestCase):
 
     def test_default_args(self):
         empty_object = type('request', (), {})()
+        empty_object.s = None
+        empty_object.d = None
+        empty_object.e = None
 
         args = fetch_retrosheet_events.validateArgs(empty_object)
         this_year = datetime.datetime.now().year
