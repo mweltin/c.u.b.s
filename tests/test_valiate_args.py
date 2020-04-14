@@ -1,7 +1,8 @@
-import fetch_retrosheet_events
 import unittest
+import fetch_retrosheet_events
 import datetime
 import constants
+
 
 class TestValidateArgs(unittest.TestCase):
 

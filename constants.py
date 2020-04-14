@@ -10,6 +10,8 @@ RETRO_DATA_DIR = '/home/mweltin/retroEvents'
 DB_HOST = 'localhost'
 DB_USER = 'bbhip'
 DB = 'bbhip'
+
+
 # see README for password configuration instructions
 # End of user defined constants section
 
@@ -67,6 +69,7 @@ def main() -> None:
 
     conn.close()
     cursor.close()
+
 
 if __name__ == "__main__":
     main()
