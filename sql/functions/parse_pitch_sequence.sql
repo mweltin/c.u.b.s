@@ -1,13 +1,3 @@
-DROP TYPE IF EXISTS parsed_pitch_sequence CASCADE;
-
-CREATE TYPE parsed_pitch_sequence AS 
-(
-    ball INTEGER,
-    strike INTEGER,
-    no_affect INTEGER,
-    in_play INTEGER
-);
-
 DROP FUNCTION IF EXISTS parse_pitch_sequence(TEXT);
 
 CREATE OR REPLACE FUNCTION parse_pitch_sequence(pitch_sequence TEXT)
