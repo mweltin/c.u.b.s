@@ -1,32 +1,212 @@
 [
-{"name": "Arizona Diamondbacks", "url": "https://content.sportslogos.net/logos/54/50/thumbs/gnnnrbxcmjhdgeu6mavqk3945.gif", "logo_name": "2019 Arizona Diamondbacks Logo"},
-{"name": "Atlanta Braves", "url": "https://content.sportslogos.net/logos/54/51/thumbs/5171502018.gif", "logo_name": "2019 Atlanta Braves Logo"},
-{"name": "Baltimore Orioles", "url": "https://content.sportslogos.net/logos/53/52/thumbs/5258002019.gif", "logo_name": "2019 Baltimore Orioles Logo"},
-{"name": "Boston Red Sox", "url": "https://content.sportslogos.net/logos/53/53/thumbs/c0whfsa9j0vbs079opk2s05lx.gif", "logo_name": "2019 Boston Red Sox Logo"},
-{"name": "Chicago Cubs", "url": "https://content.sportslogos.net/logos/54/54/thumbs/q9gvs07u72gc9xr3395u6jh68.gif", "logo_name": "2019 Chicago Cubs Logo"},
-{"name": "Chicago White Sox", "url": "https://content.sportslogos.net/logos/53/55/thumbs/oxvkprv7v4inf5dgqdebp0yse.gif", "logo_name": "2019 Chicago White Sox Logo"},
-{"name": "Cincinnati Reds", "url": "https://content.sportslogos.net/logos/54/56/thumbs/z9e0rqit393ojiizsemd0t1hx.gif", "logo_name": "2019 Cincinnati Reds Logo"},
-{"name": "Cleveland Indians", "url": "https://content.sportslogos.net/logos/53/57/thumbs/5753472014.gif", "logo_name": "2019 Cleveland Indians Logo"},
-{"name": "Colorado Rockies", "url": "https://content.sportslogos.net/logos/54/58/thumbs/5868712017.gif", "logo_name": "2019 Colorado Rockies Logo"},
-{"name": "Detroit Tigers", "url": "https://content.sportslogos.net/logos/53/59/thumbs/5989642016.gif", "logo_name": "2019 Detroit Tigers Logo"},
-{"name": "Houston Astros", "url": "https://content.sportslogos.net/logos/53/4929/thumbs/492995032000.gif", "logo_name": "2019 Houston Astros Logo"},
-{"name": "Kansas City Royals", "url": "https://content.sportslogos.net/logos/53/62/thumbs/6283222019.gif", "logo_name": "2019 Kansas City Royals Logo"},
-{"name": "Los Angeles Angels", "url": "https://content.sportslogos.net/logos/53/6521/thumbs/652143892016.gif", "logo_name": "2019 Los Angeles Angels Logo"},
-{"name": "Los Angeles Dodgers", "url": "https://content.sportslogos.net/logos/54/63/thumbs/efvfv5b5g1zgpsf56gb04lthx.gif", "logo_name": "2019 Los Angeles Dodgers Logo"},
-{"name": "Miami Marlins", "url": "https://content.sportslogos.net/logos/54/3637/thumbs/363775442019.gif", "logo_name": "2019 Miami Marlins Logo"},
-{"name": "Milwaukee Brewers", "url": "https://content.sportslogos.net/logos/54/64/thumbs/6479972018.gif", "logo_name": "2019 Milwaukee Brewers Logo"},
-{"name": "Minnesota Twins", "url": "https://content.sportslogos.net/logos/53/65/thumbs/peii986yf4l42v3aa3hy0ovlf.gif", "logo_name": "2019 Minnesota Twins Logo"},
-{"name": "New York Mets", "url": "https://content.sportslogos.net/logos/54/67/thumbs/m01gfgeorgvbfw15fy04alujm.gif", "logo_name": "2019 New York Mets Logo"},
-{"name": "New York Yankees", "url": "https://content.sportslogos.net/logos/53/68/thumbs/1256.gif", "logo_name": "2019 New York Yankees Logo"},
-{"name": "Oakland Athletics", "url": "https://content.sportslogos.net/logos/53/69/thumbs/6xk2lpc36146pbg2kydf13e50.gif", "logo_name": "2019 Oakland Athletics Logo"},
-{"name": "Philadelphia Phillies", "url": "https://content.sportslogos.net/logos/54/70/thumbs/7075792019.gif", "logo_name": "2019 Philadelphia Phillies Logo"},
-{"name": "Pittsburgh Pirates", "url": "https://content.sportslogos.net/logos/54/71/thumbs/7112502014.gif", "logo_name": "2019 Pittsburgh Pirates Logo"},
-{"name": "San Diego Padres", "url": "https://content.sportslogos.net/logos/54/73/thumbs/7343442015.gif", "logo_name": "2019 San Diego Padres Logo"},
-{"name": "San Francisco Giants", "url": "https://content.sportslogos.net/logos/54/74/thumbs/cpqj6up5bvgpoedg5fwsk20ve.gif", "logo_name": "2019 San Francisco Giants Logo"},
-{"name": "Seattle Mariners", "url": "https://content.sportslogos.net/logos/53/75/thumbs/1305.gif", "logo_name": "2019 Seattle Mariners Logo"},
-{"name": "St. Louis Cardinals", "url": "https://content.sportslogos.net/logos/54/72/thumbs/3zhma0aeq17tktge1huh7yok5.gif", "logo_name": "2019 St. Louis Cardinals Logo"},
-{"name": "Tampa Bay Rays", "url": "https://content.sportslogos.net/logos/53/2535/thumbs/253594482019.gif", "logo_name": "2019 Tampa Bay Rays Logo"},
-{"name": "Texas Rangers", "url": "https://content.sportslogos.net/logos/53/77/thumbs/ajfeh4oqeealq37er15r3673h.gif", "logo_name": "2019 Texas Rangers Logo"},
-{"name": "Toronto Blue Jays", "url": "https://content.sportslogos.net/logos/53/78/thumbs/2559d7603ouedg7ldhw0br4fn.gif", "logo_name": "2019 Toronto Blue Jays Logo"},
-{"name": "Washington Nationals", "url": "https://content.sportslogos.net/logos/54/578/thumbs/rcehah9k0kekjkgzm077fflws.gif", "logo_name": "2019 Washington Nationals Logo"}
+  {
+    "name": "Arizona Diamondbacks",
+    "logoUrl": "https://content.sportslogos.net/logos/54/50/thumbs/gnnnrbxcmjhdgeu6mavqk3945.gif",
+    "logo_name": "2019 Arizona Diamondbacks Logo",
+    "league": "National League",
+    "division": "West"
+  },
+  {
+    "name": "Atlanta Braves",
+    "logoUrl": "https://content.sportslogos.net/logos/54/51/thumbs/5171502018.gif",
+    "logo_name": "2019 Atlanta Braves Logo",
+    "league": "National League",
+    "division": "East"
+  },
+  {
+    "name": "Baltimore Orioles",
+    "logoUrl": "https://content.sportslogos.net/logos/53/52/thumbs/5258002019.gif",
+    "logo_name": "2019 Baltimore Orioles Logo",
+    "league": "American League",
+    "division": "East"
+  },
+  {
+    "name": "Boston Red Sox",
+    "logoUrl": "https://content.sportslogos.net/logos/53/53/thumbs/c0whfsa9j0vbs079opk2s05lx.gif",
+    "logo_name": "2019 Boston Red Sox Logo",
+    "league": "American League",
+    "division": "East"
+  },
+  {
+    "name": "Chicago Cubs",
+    "logoUrl": "https://content.sportslogos.net/logos/54/54/thumbs/q9gvs07u72gc9xr3395u6jh68.gif",
+    "logo_name": "2019 Chicago Cubs Logo",
+    "league": "National League",
+    "division": "Central"
+  },
+  {
+    "name": "Chicago White Sox",
+    "logoUrl": "https://content.sportslogos.net/logos/53/55/thumbs/oxvkprv7v4inf5dgqdebp0yse.gif",
+    "logo_name": "2019 Chicago White Sox Logo",
+    "league": "American League",
+    "division": "Central"
+  },
+  {
+    "name": "Cincinnati Reds",
+    "logoUrl": "https://content.sportslogos.net/logos/54/56/thumbs/z9e0rqit393ojiizsemd0t1hx.gif",
+    "logo_name": "2019 Cincinnati Reds Logo",
+    "league": "National League",
+    "division": "Central"
+  },
+  {
+    "name": "Cleveland Indians",
+    "logoUrl": "https://content.sportslogos.net/logos/53/57/thumbs/5753472014.gif",
+    "logo_name": "2019 Cleveland Indians Logo",
+    "league": "American League",
+    "division": "Central"
+  },
+  {
+    "name": "Colorado Rockies",
+    "logoUrl": "https://content.sportslogos.net/logos/54/58/thumbs/5868712017.gif",
+    "logo_name": "2019 Colorado Rockies Logo",
+    "league": "National League",
+    "division": "West"
+  },
+  {
+    "name": "Detroit Tigers",
+    "logoUrl": "https://content.sportslogos.net/logos/53/59/thumbs/5989642016.gif",
+    "logo_name": "2019 Detroit Tigers Logo",
+    "league": "American League",
+    "division": "Central"
+  },
+  {
+    "name": "Houston Astros",
+    "logoUrl": "https://content.sportslogos.net/logos/53/4929/thumbs/492995032000.gif",
+    "logo_name": "2019 Houston Astros Logo",
+    "league": "American League",
+    "division": "West"
+  },
+  {
+    "name": "Kansas City Royals",
+    "logoUrl": "https://content.sportslogos.net/logos/53/62/thumbs/6283222019.gif",
+    "logo_name": "2019 Kansas City Royals Logo",
+    "league": "American League",
+    "division": "Central"
+  },
+  {
+    "name": "Los Angeles Angels",
+    "logoUrl": "https://content.sportslogos.net/logos/53/6521/thumbs/652143892016.gif",
+    "logo_name": "2019 Los Angeles Angels Logo",
+    "league": "American League",
+    "division": "West"
+  },
+  {
+    "name": "Los Angeles Dodgers",
+    "logoUrl": "https://content.sportslogos.net/logos/54/63/thumbs/efvfv5b5g1zgpsf56gb04lthx.gif",
+    "logo_name": "2019 Los Angeles Dodgers Logo",
+    "league": "National League",
+    "division": "West"
+  },
+  {
+    "name": "Miami Marlins",
+    "logoUrl": "https://content.sportslogos.net/logos/54/3637/thumbs/363775442019.gif",
+    "logo_name": "2019 Miami Marlins Logo",
+    "league": "National League",
+    "division": "East"
+  },
+  {
+    "name": "Milwaukee Brewers",
+    "logoUrl": "https://content.sportslogos.net/logos/54/64/thumbs/6479972018.gif",
+    "logo_name": "2019 Milwaukee Brewers Logo",
+    "league": "National League",
+    "division": "Central"
+  },
+  {
+    "name": "Minnesota Twins",
+    "logoUrl": "https://content.sportslogos.net/logos/53/65/thumbs/peii986yf4l42v3aa3hy0ovlf.gif",
+    "logo_name": "2019 Minnesota Twins Logo",
+    "league": "American League",
+    "division": "Central"
+  },
+  {
+    "name": "New York Mets",
+    "logoUrl": "https://content.sportslogos.net/logos/54/67/thumbs/m01gfgeorgvbfw15fy04alujm.gif",
+    "logo_name": "2019 New York Mets Logo",
+    "league": "National League",
+    "division": "East"
+  },
+  {
+    "name": "New York Yankees",
+    "logoUrl": "https://content.sportslogos.net/logos/53/68/thumbs/1256.gif",
+    "logo_name": "2019 New York Yankees Logo",
+    "league": "American League",
+    "division": "East"
+  },
+  {
+    "name": "Oakland Athletics",
+    "logoUrl": "https://content.sportslogos.net/logos/53/69/thumbs/6xk2lpc36146pbg2kydf13e50.gif",
+    "logo_name": "2019 Oakland Athletics Logo",
+    "league": "American League",
+    "division": "West"
+  },
+  {
+    "name": "Philadelphia Phillies",
+    "logoUrl": "https://content.sportslogos.net/logos/54/70/thumbs/7075792019.gif",
+    "logo_name": "2019 Philadelphia Phillies Logo",
+    "league": "National League",
+    "division": "East"
+  },
+  {
+    "name": "Pittsburgh Pirates",
+    "logoUrl": "https://content.sportslogos.net/logos/54/71/thumbs/7112502014.gif",
+    "logo_name": "2019 Pittsburgh Pirates Logo",
+    "league": "National League",
+    "division": "Central"
+  },
+  {
+    "name": "San Diego Padres",
+    "logoUrl": "https://content.sportslogos.net/logos/54/73/thumbs/7343442015.gif",
+    "logo_name": "2019 San Diego Padres Logo",
+    "league": "National League",
+    "division": "West"
+  },
+  {
+    "name": "San Francisco Giants",
+    "logoUrl": "https://content.sportslogos.net/logos/54/74/thumbs/cpqj6up5bvgpoedg5fwsk20ve.gif",
+    "logo_name": "2019 San Francisco Giants Logo",
+    "league": "National League",
+    "division": "West"
+  },
+  {
+    "name": "Seattle Mariners",
+    "logoUrl": "https://content.sportslogos.net/logos/53/75/thumbs/1305.gif",
+    "logo_name": "2019 Seattle Mariners Logo",
+    "league": "American League",
+    "division": "West"
+  },
+  {
+    "name": "St. Louis Cardinals",
+    "logoUrl": "https://content.sportslogos.net/logos/54/72/thumbs/3zhma0aeq17tktge1huh7yok5.gif",
+    "logo_name": "2019 St. Louis Cardinals Logo",
+    "league": "National League",
+    "division": "Central"
+  },
+  {
+    "name": "Tampa Bay Rays",
+    "logoUrl": "https://content.sportslogos.net/logos/53/2535/thumbs/253594482019.gif",
+    "logo_name": "2019 Tampa Bay Rays logo",
+    "league": "American League",
+    "division": "East"
+  },
+  {
+    "name": "Texas Rangers",
+    "logoUrl": "https://content.sportslogos.net/logos/53/77/thumbs/ajfeh4oqeealq37er15r3673h.gif",
+    "logo_name": "2019 Texas Rangers Logo",
+    "league": "American League",
+    "division": "West"
+  },
+  {
+    "name": "Toronto Blue Jays",
+    "logoUrl": "https://content.sportslogos.net/logos/53/78/thumbs/2559d7603ouedg7ldhw0br4fn.gif",
+    "logo_name": "2019 Toronto Blue Jays Logo",
+    "league": "American League",
+    "division": "East"
+  },
+  {
+    "name": "Washington Nationals",
+    "logoUrl": "https://content.sportslogos.net/logos/54/578/thumbs/rcehah9k0kekjkgzm077fflws.gif",
+    "logo_name": "2019 Washington Nationals Logo",
+    "league": "National League",
+    "division": "East"
+  }
 ]
