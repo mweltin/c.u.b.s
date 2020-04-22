@@ -1,7 +1,36 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-6 col-lg-4 col-xl-3" *ngFor="let team of teams">
-		<img [src]='sanitizer.bypassSecurityTrustResourceUrl(team.logo_url)' alt= "{{team.name}}">
+      <div class="col-3">
+        <div class="btn-group mr-3">
+          <button type="button" class="btn btn-primary">Filter Teams By</button>
+          <div class="btn-group" ngbDropdown role="group" aria-label="Button group with nested dropdown">
+            <button class="btn btn-primary dropdown-toggle-split" ngbDropdownToggle></button>
+            <div class="dropdown-menu" ngbDropdownMenu>
+              <button ngbDropdownItem (click)="setFilter({league:'American league'})">American League</button>
+              <button ngbDropdownItem (click)="setFilter({league:'American league', division:'east'})">- East</button>
+              <button ngbDropdownItem (click)="setFilter({league:'American league', division:'central'})">- Central</button>
+              <button ngbDropdownItem (click)="setFilter({league:'American league', division:'west'})">- West</button>
+              <button ngbDropdownItem (click)="setFilter({league:'National league'})">National League</button>
+              <button ngbDropdownItem (click)="setFilter({league:'National league', division:'east'})">- East</button>
+              <button ngbDropdownItem (click)="setFilter({league:'National league', division:'central'})">- Central</button>
+              <button ngbDropdownItem (click)="setFilter({league:'National league', division:'west'})">- West</button>
+              <button ngbDropdownItem (click)="setFilter(null)">Clear Filter</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6" *ngIf="filterBy">
+        <div class="row">
+          <div class="col-6 filter-header league">{{filterBy.league}}
+            <span *ngIf="filterBy.division" class=" filter-header division"> - {{filterBy.division}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 col-lg-4 col-xl-3" *ngFor="let team of teams | teamFilter: filterBy ">
+		      <img [src]='sanitizer.bypassSecurityTrustResourceUrl(team.logo_url)' alt= "{{team.name}}">
         </div>
     </div>
 </div>

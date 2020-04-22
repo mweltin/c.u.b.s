@@ -7,17 +7,20 @@ import { PlayerComponent } from './player/player.component';
 import { HttpClientModule } from '@angular/common/http';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { TeamComponent } from './team/team.component';
+import { TeamFilter } from './team/team.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     PlayerComponent,
-    TeamComponent
+    TeamComponent,
+    TeamFilter
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
