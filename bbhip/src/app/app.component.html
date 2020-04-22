@@ -2,22 +2,11 @@
   <div class="container">
     <div class="rs-header">
         <title> {{title}} </title>
-      Baseball data viewer
     </div>
-    <div class="row">
-      <div class="col-sm">
-        <div> Please select a player from the list below.</div>
-        <li *ngFor="let player of players">
-          <a routerLinkActive="active" [routerLink]="['/player', player.player_id]">{{player.first}} {{
-            player.last}}</a>
-        </li>
-      </div>
-      <div class="col-sm">
-        <div>
-          <router-outlet></router-outlet>
-        </div>
-      </div>
+    <div>
+	    <h2 class="app-header">Completely Useless Baseball Statistics (CUBS)</h2>
     </div>
+    <router-outlet></router-outlet>
   </div>
 </div>
 

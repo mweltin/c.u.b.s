@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS team (
 INSERT INTO team
 (name,
  logo_url,
- logo_alt_text,
+ logo_text,
  league,
  division)
 VALUES

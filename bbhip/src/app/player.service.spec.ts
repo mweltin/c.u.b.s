@@ -11,7 +11,7 @@ describe('player service test', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ HttpClientTestingModule ],
+      imports: [HttpClientTestingModule],
       providers: [PlayerService]
     });
 
@@ -20,64 +20,64 @@ describe('player service test', () => {
     service = TestBed.inject(PlayerService);
   });
 
-it('can fetch player list', () => {
+  it('can fetch player list', () => {
     const testData: Player[] = [{
-  	 player_id: 10,
-  	 id: 'alberta103',
-  	 last: 'Almora',
-  	 first: 'Albert',
-  	 play_debut: new Date(3-1-2016),
-  	 mgr_debut: null,
-  	 coach_debut: null,
-  	 ump_debut: null
-   }];
+      player_id: 10,
+      id: 'alberta103',
+      last: 'Almora',
+      first: 'Albert',
+      play_debut: new Date(3 - 1 - 2016),
+      mgr_debut: null,
+      coach_debut: null,
+      ump_debut: null
+    }];
 
-  service.getPlayerList().subscribe(post => {
-  	expect(post.length).toBe(1);
-  	expect(post).toEqual(testData);
+    service.getPlayerList().subscribe(post => {
+      expect(post.length).toBe(1);
+      expect(post).toEqual(testData);
+    });
+
+    const req = httpTestingController.expectOne('cgi/get_player_list.py');
+
+    expect(req.request.method).toEqual('GET');
+
+    // Respond with mock data, causing Observable to resolve.
+    // Subscribe callback asserts that correct data was returned.
+    req.flush(testData);
+
+    httpTestingController.verify();
   });
 
-  const req = httpTestingController.expectOne('cgi/get_player_list.py');
-
-  expect(req.request.method).toEqual('GET');
-
-  // Respond with mock data, causing Observable to resolve.
-  // Subscribe callback asserts that correct data was returned.
-  req.flush(testData);
-
-  httpTestingController.verify();
-});
-
-it('can fetch data for a single player ', () => {
+  it('can fetch data for a single player ', () => {
     const testData: Player = {
-  	 player_id: 10,
-  	 id: 'alberta103',
-  	 last: 'Almora',
-  	 first: 'Albert',
-  	 play_debut: new Date(3-1-2016),
-  	 mgr_debut: null,
-  	 coach_debut: null,
-  	 ump_debut: null
-   };
+      player_id: 10,
+      id: 'alberta103',
+      last: 'Almora',
+      first: 'Albert',
+      play_debut: new Date(3 - 1 - 2016),
+      mgr_debut: null,
+      coach_debut: null,
+      ump_debut: null
+    };
 
-  service.getPlayer(10).subscribe(post => {
-  	expect(post).toEqual(testData);
+    service.getPlayer(10).subscribe(post => {
+      expect(post).toEqual(testData);
+    });
+
+    const req = httpTestingController.expectOne('cgi/get_player.py?player_id=10');
+
+    expect(req.request.method).toEqual('GET');
+
+    // Respond with mock data, causing Observable to resolve.
+    // Subscribe callback asserts that correct data was returned.
+    req.flush(testData);
+
+    httpTestingController.verify();
   });
 
-  const req = httpTestingController.expectOne('cgi/get_player.py?player_id=10');
-
-  expect(req.request.method).toEqual('GET');
-
-  // Respond with mock data, causing Observable to resolve.
-  // Subscribe callback asserts that correct data was returned.
-  req.flush(testData);
-
-  httpTestingController.verify();
-});
-
-afterEach(() => {
-  // After every test, assert that there are no more pending requests.
-  httpTestingController.verify();
-});
+  afterEach(() => {
+    // After every test, assert that there are no more pending requests.
+    httpTestingController.verify();
+  });
 
 });
