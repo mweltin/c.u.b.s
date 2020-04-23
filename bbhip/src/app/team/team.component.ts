@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Team } from '../team';
 import { TeamService } from '../team.service';
 import { DomSanitizer } from '@angular/platform-browser';
-import { TeamFilterInterface} from './team.pipe';
+import { TeamFilterInterface } from './team.pipe';
 
 @Component({
   selector: 'app-team',
@@ -15,12 +15,13 @@ export class TeamComponent implements OnInit {
   filterBy: TeamFilterInterface;
 
   constructor(
-  private teamSrv: TeamService,
-  public sanitizer: DomSanitizer
+    private teamSrv: TeamService,
+    public sanitizer: DomSanitizer
   ) { }
 
   ngOnInit(): void {
     this.getTeams();
+    this.filterBy = null;
   }
 
   getTeams(): void {
