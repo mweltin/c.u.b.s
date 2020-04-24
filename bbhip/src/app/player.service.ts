@@ -11,15 +11,21 @@ export class PlayerService {
 
   private playerListUrl = 'cgi/get_player_list.py';
   private playerUrl = 'cgi/get_player.py';
+  private rosterUrl = 'cgi/get_players_by_team.py';
 
   constructor(private http: HttpClient) { }
 
   getPlayerList(): Observable<Player[]> {
-    return this.http.get<Player[]>(this.playerListUrl)
+    return this.http.get<Player[]>(this.playerListUrl);
   }
 
   getPlayer(id: number): Observable<Player> {
     const url = `${this.playerUrl}?player_id=${id}`;
     return this.http.get<Player>(url);
+  }
+
+  getPlayersByTeam(id: number): Observable<Player[]> {
+    const url = `${this.rosterUrl}?team_id=${id}`;
+    return this.http.get<Player[]>(url);
   }
 }

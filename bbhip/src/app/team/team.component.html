@@ -30,7 +30,11 @@
 
     <div class="row">
         <div class="col-md-6 col-lg-4 col-xl-3" *ngFor="let team of teams | teamFilter: filterBy ">
-		      <img [src]='sanitizer.bypassSecurityTrustResourceUrl(team.logo_url)' alt= "{{team.name}}">
+        <a  routerLink="/roster" (click)="setActiveTeam(team)">
+		      <img 
+            [src]='sanitizer.bypassSecurityTrustResourceUrl(team.logo_url)'
+            alt= "{{team.name}}">
+          </a>
         </div>
     </div>
 </div>

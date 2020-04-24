@@ -33,4 +33,8 @@ export class TeamComponent implements OnInit {
   setFilter( filter: TeamFilterInterface ): void {
     this.filterBy = filter;
   }
+
+  setActiveTeam( team: Team){
+    this.teamSrv.setActiveTeam(team);
+  }
 }

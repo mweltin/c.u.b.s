@@ -8,13 +8,15 @@ import { HttpClientModule } from '@angular/common/http';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { TeamComponent } from './team/team.component';
 import { TeamFilter } from './team/team.pipe';
+import { RosterComponent } from './roster/roster.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PlayerComponent,
     TeamComponent,
-    TeamFilter
+    TeamFilter,
+    RosterComponent
   ],
   imports: [
     BrowserModule,
