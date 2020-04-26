@@ -98,3 +98,8 @@ CREATE TABLE IF NOT EXISTS event (
     fielder_with_fifth_assist integer,
     event_num integer
 );
+
+COMMENT ON TABLE public.event IS 'Retrosheet.org event table';
+COMMENT ON COLUMN event.batting_team IS 'Either 0 (for visiting team), or 1 (for home team).';
+COMMENT ON COLUMN event.batter IS 'Retrosheet player id for batter of this event';
+COMMENT ON COLUMN event.pitcher IS 'Retrosheep palyer id for pitcher of this event';
