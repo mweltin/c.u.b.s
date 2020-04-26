@@ -25,6 +25,9 @@ def main() -> None:
     insert_event_query = """
         INSERT INTO event (
             game_id  ,
+            home_team,
+            game_date,
+            game_num,
             visiting_team  ,
             inning ,
             batting_team ,
@@ -124,6 +127,9 @@ def main() -> None:
         )
         VALUES (
             %s, 
+            %s,
+            %s,
+            %s,
             %s, 
             %s, 
             %s, 
@@ -230,7 +236,14 @@ def main() -> None:
                 with open(file, newline='') as csv_file:
                     event_row = csv.reader(csv_file)
                     for insert_data in event_row:
+                        # index zero is a combination of home_team, game_date and game_num
+                        home_team = insert_data[0][0:3]
+                        game_date = insert_data[0][3:7] + '-' + insert_data[0][7:9] + '-' + insert_data[0][9:11]
+                        game_num = insert_data[0][11:12]
                         # over come limitation in csv.reader convert empty values (i.e. '') to None (i.e. NULL)
+                        insert_data.insert(1, home_team)
+                        insert_data.insert(2, game_date)
+                        insert_data.insert(3, game_num)
                         for i in range(len(insert_data)):
                             if insert_data[i] == '':
                                 insert_data[i] = None

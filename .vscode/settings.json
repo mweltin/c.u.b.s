@@ -1,0 +1,13 @@
+{
+    "sqltools.connections": [
+        {
+            "database": "bbhip",
+            "dialect": "PostgreSQL",
+            "name": "bbhip",
+            "password": "sedrbo",
+            "port": 5432,
+            "server": "localhost",
+            "username": "bbhip"
+        }
+    ]
+}
