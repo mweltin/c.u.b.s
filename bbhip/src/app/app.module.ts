@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PlayerComponent } from './player/player.component';
 import { HttpClientModule } from '@angular/common/http';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TeamComponent } from './team/team.component';
 import { TeamFilter } from './team/team.pipe';
 import { RosterComponent } from './roster/roster.component';

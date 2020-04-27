@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { RosterComponent } from './roster.component';
 
@@ -8,7 +9,10 @@ describe('RosterComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RosterComponent ]
+      declarations: [ RosterComponent ],
+      imports: [
+        HttpClientTestingModule
+      ]
     })
     .compileComponents();
   }));

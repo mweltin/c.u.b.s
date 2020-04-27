@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
       <div class="col-3">
-        <div class="btn-group mr-3">
+        <div class="btn-group mr-3" id="filter-dropdown">
           <button type="button" class="btn btn-primary">Filter Teams By</button>
           <div class="btn-group" ngbDropdown role="group" aria-label="Button group with nested dropdown">
             <button class="btn btn-primary dropdown-toggle-split" ngbDropdownToggle></button>
@@ -31,7 +31,7 @@
     <div class="row">
         <div class="col-md-6 col-lg-4 col-xl-3" *ngFor="let team of teams | teamFilter: filterBy ">
         <a  routerLink="/roster" (click)="setActiveTeam(team)">
-		      <img 
+		      <img
             [src]='sanitizer.bypassSecurityTrustResourceUrl(team.logo_url)'
             alt= "{{team.name}}">
           </a>

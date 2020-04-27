@@ -12,7 +12,8 @@ describe('TeamFilterPipe', () => {
           logo_url: 'http://cubs.com',
           logo_text: 'cubs logo',
           league: 'National league',
-          division: 'central'
+          division: 'central',
+          abbrev: 'CHA'
         },
         {
             team_id: 11,
@@ -20,7 +21,8 @@ describe('TeamFilterPipe', () => {
             logo_url: 'http://mets.com',
             logo_text: 'mets logo',
             league: 'National league',
-            division: 'east'
+            division: 'east',
+            abbrev: 'NYM'
         },
         {
             team_id: 12,
@@ -28,7 +30,8 @@ describe('TeamFilterPipe', () => {
             logo_url: 'http://royals.com',
             logo_text: 'royals logo',
             league: 'American league',
-            division: 'central'
+            division: 'central',
+            abbrev: 'KCR'
           },
         {
           team_id: 13,
@@ -36,7 +39,8 @@ describe('TeamFilterPipe', () => {
           logo_url: 'http://redsox.com',
           logo_text: 'red sox logo',
           league: 'American league',
-          division: 'east'
+          division: 'east',
+          abbrev: 'BOS'
         }
       ];
 

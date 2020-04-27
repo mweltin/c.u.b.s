@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PlayerService } from '../player.service';
+import { Team } from '../team';
 import { TeamService } from '../team.service';
 import { Roster } from '../roster';
 
@@ -10,19 +11,36 @@ import { Roster } from '../roster';
 })
 export class RosterComponent implements OnInit {
 
-  public roster: Roster; 
-  
+  public roster: Roster;
+
   constructor(
     private playerSrv: PlayerService,
     private teamSrv: TeamService
   ) { }
 
   ngOnInit(): void {
-    this.roster.team = teamSrv.activeTeam;
+    this.roster = {
+      team: {
+        team_id: 0,
+        name: 'unknown',
+        logo_url: 'http:example.com',
+        logo_text: 'logo missing',
+        league: 'nonee',
+        division: 'none',
+        abbrev: 'abrv',
+      },
+      players: []
+    };
+
+    this.roster.team = this.teamSrv.activeTeam;
+    this.getRoster(this.roster.team);
   }
 
   getRoster( team: Team): void {
-    this.roster.players = playerSrv.getPlayersByTeam(team);
+    this.playerSrv.getPlayersByTeam(team).subscribe(res => {
+      this.roster.players = res;
+    });
+
   }
 
 }

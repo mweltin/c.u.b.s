@@ -57,7 +57,7 @@ VALUES
     '2019 Chicago Cubs Logo',
     'National League',
      'Central',
-     'CHC'
+     'CHN'
   ),
   (
     'Chicago White Sox',
@@ -65,7 +65,7 @@ VALUES
     '2019 Chicago White Sox Logo',
     'American League',
     'Central',
-    'CHW'
+    'CHN'
   ),
   (
     'Cincinnati Reds',
@@ -113,7 +113,7 @@ VALUES
     '2019 Kansas City Royals Logo',
     'American League',
     'Central',
-    'KCR'
+    'KCA'
   ),
   (
     'Los Angeles Angels',
@@ -129,7 +129,7 @@ VALUES
     '2019 Los Angeles Dodgers Logo',
     'National League',
     'West',
-    'LAD'
+    'LAN'
   ),
   (
     'Miami Marlins',
@@ -161,7 +161,7 @@ VALUES
     '2019 New York Mets Logo',
     'National League',
     'East',
-    'NYM'
+    'NYN'
   ),
   (
     'New York Yankees',
@@ -169,7 +169,7 @@ VALUES
     '2019 New York Yankees Logo',
     'American League',
     'East',
-    'NYY'
+    'NYA'
   ),
   (
     'Oakland Athletics',
@@ -201,7 +201,7 @@ VALUES
     '2019 San Diego Padres Logo',
     'National League',
     'West',
-    'SDP'
+    'SDN'
   ),
   (
     'San Francisco Giants',
@@ -209,7 +209,7 @@ VALUES
     '2019 San Francisco Giants Logo',
     'National League',
     'West',
-    'SFG'
+    'SFN'
   ),
   (
     'Seattle Mariners',
@@ -225,7 +225,7 @@ VALUES
     '2019 St. Louis Cardinals Logo',
     'National League',
     'Central',
-    'STL'
+    'SLN'
   ),
   (
     'Tampa Bay Rays',
@@ -233,7 +233,7 @@ VALUES
     '2019 Tampa Bay Rays logo',
     'American League',
     'East',
-    'TBR'
+    'TBA'
   ),
   (
     'Texas Rangers',
@@ -257,5 +257,9 @@ VALUES
     '2019 Washington Nationals Logo',
     'National League',
     'East',
-    'WSN'
-  )
+    'WAS'
+  );
+
+COMMENT ON TABLE public.team IS 'Team meta data.';
+COMMENT ON COLUMN team.abbrev IS 'Team name abbrevations as posted on Retrosheets, https://www.retrosheet.org/CurrentNames.csv';
+

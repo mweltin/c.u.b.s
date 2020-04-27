@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Player } from './player';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
+import { Team } from './team';
 
 @Injectable({
   providedIn: 'root'
@@ -24,8 +25,8 @@ export class PlayerService {
     return this.http.get<Player>(url);
   }
 
-  getPlayersByTeam(id: number): Observable<Player[]> {
-    const url = `${this.rosterUrl}?team_id=${id}`;
+  getPlayersByTeam(team: Team): Observable<Player[]> {
+    const url = `${this.rosterUrl}?team_id=${team.abbrev}`;
     return this.http.get<Player[]>(url);
   }
 }

@@ -1,1 +1,19 @@
-<p>roster works!</p>
+<div class="row">
+  <div class="col">
+    <a class="btn btn-primary" routerLink="/teams">Back to teams</a>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    {{ roster.team.name}}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <div *ngFor="let player of roster.players">
+      <a routerLink="/player/{{player.id}}"  >{{ player.first }} {{ player.last }} </a>
+    </div>
+  </div>
+</div>

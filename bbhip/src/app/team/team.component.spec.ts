@@ -19,7 +19,8 @@ describe('TeamComponent', () => {
         logo_url: 'http://cubs.com',
         logo_text: 'cubs logo',
         league: 'National league',
-        division: 'central'
+        division: 'central',
+        abbrev: 'CHA'
       },
       {
         team_id: 11,
@@ -27,7 +28,8 @@ describe('TeamComponent', () => {
         logo_url: 'http://redsox.com',
         logo_text: 'red sox logo',
         league: 'American league',
-        division: 'east'
+        division: 'east',
+        abbrev: 'BOS'
       }
     ];
     const teamSrv = jasmine.createSpyObj('TeamService', ['getTeams']);
@@ -86,7 +88,8 @@ describe('TeamComponent', () => {
           logo_url: 'http://cubs.com',
           logo_text: 'cubs logo',
           league: 'National league',
-          division: 'central'
+          division: 'central',
+          abbrev: 'CHA'
         },
         {
           team_id: 11,
@@ -94,7 +97,8 @@ describe('TeamComponent', () => {
           logo_url: 'http://redsox.com',
           logo_text: 'red sox logo',
           league: 'American league',
-          division: 'east'
+          division: 'east',
+          abbrev: 'BOS'
         }
       ];
       const teamSrv = jasmine.createSpyObj('TeamService', ['getTeams']);
