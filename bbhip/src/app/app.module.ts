@@ -5,10 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PlayerComponent } from './player/player.component';
 import { HttpClientModule } from '@angular/common/http';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TeamComponent } from './team/team.component';
 import { TeamFilter } from './team/team.pipe';
-import { PitchOutcomesComponent } from './pitch-outcomes/pitch-outcomes.component';
+import { BarChartComponent } from './bar-chart/bar-chart.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +16,7 @@ import { PitchOutcomesComponent } from './pitch-outcomes/pitch-outcomes.componen
     PlayerComponent,
     TeamComponent,
     TeamFilter,
-    PitchOutcomesComponent
+    BarChartComponent
   ],
   imports: [
     BrowserModule,
