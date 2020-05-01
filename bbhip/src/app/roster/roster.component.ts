@@ -38,6 +38,7 @@ export class RosterComponent implements OnInit {
 
   getRoster( team: Team): void {
     this.playerSrv.getPlayersByTeam(team).subscribe(res => {
+      res.sort((a, b) => a.last.localeCompare(b.last));
       this.roster.players = res;
     });
 
