@@ -1,7 +1,9 @@
 import { Component, OnInit, Injectable } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Router, NavigationEnd } from '@angular/router';
-import { filter } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { Player } from '../player';
+import { PlayerService } from '../player.service';
+import { PitchOutcome } from '../pitchOutcome';
+
 
 @Component({
   selector: 'app-player',
@@ -15,22 +17,14 @@ import { filter } from 'rxjs/operators';
 
 export class PlayerComponent implements OnInit {
 
-  player_id: number;
+  player: Player;
+  poData: PitchOutcome[];
 
-  constructor(private actRoute: ActivatedRoute, private router: Router) {
+  constructor(private playerSrv: PlayerService,  private router: Router) {
   }
 
   ngOnInit(): void {
-    this.player_id = this.actRoute.snapshot.params.player_id;
-    // components are only initialized once. This event listener allows us to stay on
-    // the player view but refresh data each time we select a new player
-    this.router.events.pipe(filter(e => e instanceof NavigationEnd)).subscribe(() => {
-      this.fetchData();
-    });
-  }
-
-  fetchData(): void {
-    this.player_id = this.actRoute.snapshot.params.player_id;
+    this.player = this.playerSrv.selectedPlayer;
   }
 
 }

@@ -10,6 +10,7 @@ import { TeamComponent } from './team/team.component';
 import { TeamFilter } from './team/team.pipe';
 import { RosterComponent } from './roster/roster.component';
 import { NavComponent } from './nav/nav.component';
+import { PitchOutcomeComponent } from './pitch-outcome/pitch-outcome.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { NavComponent } from './nav/nav.component';
     TeamFilter,
     RosterComponent,
     NavComponent
+    PitchOutcomeComponent
   ],
   imports: [
     BrowserModule,
