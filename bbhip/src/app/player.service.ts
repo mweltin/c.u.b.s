@@ -13,6 +13,8 @@ export class PlayerService {
   private playerListUrl = 'cgi/get_player_list.py';
   private playerUrl = 'cgi/get_player.py';
   private rosterUrl = 'cgi/get_players_by_team.py';
+  private pichOutcomeUrl =  'cgi/get_player_pitch_outcome.py';
+  public currentPlayer: Player;
 
   constructor(private http: HttpClient) { }
 
