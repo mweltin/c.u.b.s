@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 // import player service to get pitch outcome data
 import { pie, arc, scaleOrdinal, select } from 'd3';
+import { PlayerService } from '../player.service';
+
 
 @Component({
   selector: 'app-pitch-outcome',
@@ -9,34 +11,24 @@ import { pie, arc, scaleOrdinal, select } from 'd3';
 })
 export class PitchOutcomeComponent implements OnInit {
 
-  public data: any = [
-    {
-      player_id: 'rizza001',
-      year: 2018,
-      balls: 971,
-      strikes: 899,
-      in_play: 495,
-      no_affect: 199,
-      total: 2564
-    },
-    {
-      player_id: 'rizza001',
-      year: 2019,
-      balls: 100,
-      strikes: 100,
-      in_play: 100,
-      no_affect: 100,
-      total: 2510
-    }
-  ];
+  constructor(
+    private playerSrv: PlayerService
+  ) { }
 
-arcs() {
-      return arc().innerRadius(100)
-        .outerRadius(240)
-        .cornerRadius(15);
-}
+  ngOnInit(): void {
 
-  render(): void {
+    this.playerSrv.getPitchOutcomeByPlayer(this.playerSrv.selectedPlayer).subscribe(
+      res => this.render(res[0])
+    );
+  }
+
+  arcs() {
+    return arc().innerRadius(100)
+      .outerRadius(240)
+      .cornerRadius(15);
+  }
+
+  render(data): void {
 
     const svg = select('svg');
     const height = svg.attr('width');
@@ -45,8 +37,7 @@ arcs() {
     const g = svg.append('g')
       .attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')');
 
-    const data = [this.data[0].balls, this.data[0].strikes, this.data[0].in_play, this.data[0].no_affect];
-    const arcs = pie()(data);
+    const arcs = pie()([data.balls, data.strikes, data.in_play, data.no_affect]);
     const color = scaleOrdinal(['#4daf4a', '#377eb8', '#ff7f00', '#984ea3']);
     const arcDim = arc().innerRadius(10)
       .outerRadius(50);
@@ -55,14 +46,7 @@ arcs() {
       .data(arcs)
       .enter()
       .append('path')
-      .style('fill', (d, i) => color(i))
+      .style('fill', (d, i) => color(i) )
       .attr('d', arcDim);
   }
-
-  constructor() { }
-
-  ngOnInit(): void {
-      this.render();
-  }
-
 }

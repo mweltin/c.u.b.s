@@ -11,7 +11,7 @@
 </div>
 
 <div class="row">
-  <div class="col-md-6 col-lg-4 col-xl-3" *ngFor="let player of roster.players ">
-    <a routerLink="/player/{{player.id}}">{{ player.first }} {{ player.last }} </a>
+  <div class="col-md-6 col-lg-4 col-xl-3" *ngFor="let player of roster.players " >
+    <a routerLink="/player/{{player.id}}" (click)="setPlayer(player)" >{{ player.first }} {{ player.last }} </a>
   </div>
 </div>

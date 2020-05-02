@@ -1,7 +1,11 @@
-from os import environ
-import psycopg2
-import constants
 import json
+import urllib
+from os import environ
+from urllib.parse import urlparse
+
+import psycopg2
+
+import constants
 
 
 def start_response(status, headers):
@@ -17,12 +21,15 @@ def application(environ, start_response) -> list:
     headers = [('Content-type', 'application/json')]
     start_response(status, headers)
 
+    q = urllib.parse.parse_qs(environ['QUERY_STRING'])
+
+    player = q.get('player_id')[0]
     # -*- coding: UTF-8 -*-# enable debugging
-    player_query = '''
+    pitch_outcome_query = '''
         select t2.*, (t2.balls + t2.strikes + t2.no_affect + t2.in_play) as total  
         FROM
             ( SELECT 
-                event.batter, 
+                event.batter as player_id, 
                 extract(year from game_date) as year, 
                 sum(t1.ball) balls, 
                 sum(t1.strike) strikes, 
@@ -31,17 +38,17 @@ def application(environ, start_response) -> list:
             FROM 
                 event 
             JOIN parse_pitch_sequence(pitch_sequence) t1 ON TRUE
-            WHERE batter = 'rizza001'
-            GROUP BY year, event.batter ) t2
-    '''
+            WHERE batter = %s
+            GROUP BY year, event.batter ) t2'''
     connect_str = "user='" + constants.DB_USER + "' host='" + constants.DB_HOST + "' dbname='" + constants.DB + "' password="
     conn = psycopg2.connect(connect_str)
     conn.set_isolation_level(psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT)
     cursor = conn.cursor()
-    cursor.execute(player_query)
+    cursor.execute(pitch_outcome_query, [player])
 
     r = [dict((cursor.description[i][0], value) for i, value in enumerate(row)) for row in cursor.fetchall()]
     a = bytes(json.dumps(r, default=str), encoding='utf-8')
+
     return [a]
 
 

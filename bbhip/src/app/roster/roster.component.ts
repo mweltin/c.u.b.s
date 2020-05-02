@@ -3,6 +3,7 @@ import { PlayerService } from '../player.service';
 import { Team } from '../team';
 import { TeamService } from '../team.service';
 import { Roster } from '../roster';
+import { Player } from '../player';
 
 @Component({
   selector: 'app-roster',
@@ -41,7 +42,10 @@ export class RosterComponent implements OnInit {
       res.sort((a, b) => a.last.localeCompare(b.last));
       this.roster.players = res;
     });
+  }
 
+  setPlayer(player: Player) {
+    this.playerSrv.setSelectePlayer(player);
   }
 
 }
