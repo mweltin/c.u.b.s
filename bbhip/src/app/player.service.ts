@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Player } from './player';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Team } from './team';
 import { PitchOutcome } from './pitchOutcome';
 
@@ -16,6 +16,20 @@ export class PlayerService {
   private rosterUrl = 'cgi/get_players_by_team.py';
   private pichOutcomeUrl =  'cgi/get_pitch_outcome_by_player.py';
   public selectedPlayer: Player;
+
+  // Observable Team sources
+  private selectedPlayerSource = new Subject<Player>();
+  // Observable team streams (this is what consumers of the service subscribe to)
+  palyerChangeAccouncement = this.selectedPlayerSource.asObservable();
+  // Publish the fact that the selected team has changed.
+  announcePlayerChange(dPlyaer: Player) {
+    this.selectedPlayerSource.next(dPlyaer);
+  }
+
+  setSelectePlayer(inPlyaer: Player): void {
+    this.selectedPlayer = inPlyaer;
+    this.announcePlayerChange(inPlyaer);
+  }
 
   constructor(private http: HttpClient) { }
 
@@ -37,8 +51,5 @@ export class PlayerService {
     const url = `${this.pichOutcomeUrl}?player_id=${player.id}`;
     return this.http.get<PitchOutcome[]>(url);
   }
-
-  setSelectePlayer(player: Player): void {
-    this.selectedPlayer = player;
-  }
+  
 }

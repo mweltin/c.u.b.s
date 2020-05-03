@@ -17,14 +17,26 @@ export class NavComponent implements OnInit {
   constructor(
     public playerSrv: PlayerService,
     public teamSrv: TeamService
-  ) { }
+  ) { 
+    teamSrv.teamChangeAccouncement.subscribe(
+      res => {
+        this.selectedTeam  = res;
+    });
+    playerSrv.palyerChangeAccouncement.subscribe(
+      res => {
+        this.selectedPlayer = res;
+    });
+  }
 
   ngOnInit(): void {
-    this.selectedPlayer = this.playerSrv.selectedPlayer;
-    this.selectedTeam = this.teamSrv.selectedTeam;
   }
 
   unsetPlayer(): void{
     this.playerSrv.setSelectePlayer(null);
   }
+
+  unsetTeam(): void{
+    this.teamSrv.setActiveTeam(null);
+  }
+
 }

@@ -1,8 +1,14 @@
-<div class="row">
-  <div *ngIf=[selectedTeam] class="col" (click)="unsetPlayer()" routerLink="/roster">
-    {{ selectedTeam.name}}
-  </div>
-  <div *ngIf=[selectedPlayer] class="col" >
-    {{ selectedPlayer.first }} {{ selectedPlayer.last }}
+<div class="container-fluid">
+  <div class="row nav-row">
+    <div *ngIf=selectedTeam class="col-3 clickable" (click)="unsetTeam(); unsetPlayer()" routerLink="/teams">
+      Teams
+    </div>
+    <div *ngIf=selectedTeam class="col-4 clickable" (click)="unsetPlayer()" routerLink="/roster">
+      > {{ selectedTeam.name }}
+    </div>
+    <div *ngIf=selectedPlayer class="col clickable" >
+      > {{ selectedPlayer.first }} {{ selectedPlayer.last }}
+    </div>
   </div>
 </div>
+

@@ -1,23 +1,32 @@
 import { Injectable } from '@angular/core';
 import { Team } from './team';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TeamService {
-  private teamUrl = 'cgi/get_teams.py';
-  public selectedTeam: Team;
 
-  constructor(private http: HttpClient) { }
+    public selectedTeam: Team;
+    private teamUrl = 'cgi/get_teams.py';
 
-  getTeams(): Observable<Team[]> {
-    return this.http.get<Team[]>(this.teamUrl);
-  }
+    // Observable Team sources
+    private selectedTeamSource = new Subject<Team>();
+    // Observable team streams (this is what consumers of the service subscribe to)
+    teamChangeAccouncement = this.selectedTeamSource.asObservable();
+    // Publish the fact that the selected team has changed.
+    announceTeamChange(pTeam: Team) {
+      this.selectedTeamSource.next(pTeam);
+    }
+    setActiveTeam(inTeam: Team): void {
+      this.selectedTeam = inTeam;
+      this.announceTeamChange(inTeam);
+    }
 
-  setActiveTeam( aTeam: Team){
-    this.selectedTeam = aTeam;
-  }
+    constructor(private http: HttpClient) {}
 
+    getTeams(): Observable < Team[] > {
+      return this.http.get<Team[]>(this.teamUrl);
+    }
 }
