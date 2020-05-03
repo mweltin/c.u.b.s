@@ -65,7 +65,7 @@ VALUES
     '2019 Chicago White Sox Logo',
     'American League',
     'Central',
-    'CHN'
+    'CHA'
   ),
   (
     'Cincinnati Reds',
