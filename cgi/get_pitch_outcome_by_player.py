@@ -26,11 +26,18 @@ def application(environ, start_response) -> list:
     player = q.get('player_id')[0]
     # -*- coding: UTF-8 -*-# enable debugging
     pitch_outcome_query = '''
-        select t2.*, (t2.balls + t2.strikes + t2.no_affect + t2.in_play) as total  
+        SELECT
+          t2.player_id,
+          t2.year,
+          COALESCE(t2.balls, 0) AS balls, 
+          COALESCE(t2.strikes, 0) AS strikes, 
+          COALESCE(t2.in_play, 0) AS in_play, 
+          COALESCE(t2.no_affect, 0) AS no_affect, 
+          (t2.balls + t2.strikes + t2.no_affect + t2.in_play) as total  
         FROM
             ( SELECT 
-                event.batter as player_id, 
-                extract(year from game_date) as year, 
+                event.batter AS player_id, 
+                extract(year from game_date) AS year, 
                 sum(t1.ball) balls, 
                 sum(t1.strike) strikes, 
                 sum(t1.in_play) in_play, 
