@@ -1,7 +1,9 @@
 <div class="row">
-  <div class="col-3">
+  <div class="col">
     <div class="btn-group mr-3" id="filter-dropdown">
-      <button type="button" class="btn btn-primary">Filter Teams By</button>
+      <button type="button" class="btn btn-primary">
+        {{ dropDownText }}
+      </button>
       <div class="btn-group" ngbDropdown role="group" aria-label="Button group with nested dropdown">
         <button class="btn btn-primary dropdown-toggle-split" ngbDropdownToggle></button>
         <div class="dropdown-menu" ngbDropdownMenu>
@@ -15,13 +17,6 @@
           <button ngbDropdownItem (click)="setFilter({league:'National league', division:'west'})">- West</button>
           <button ngbDropdownItem (click)="setFilter(null)">Clear Filter</button>
         </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-6" *ngIf="filterBy">
-    <div class="row">
-      <div class="col-6 filter-header league">{{filterBy.league}}
-        <span *ngIf="filterBy.division" class=" filter-header division"> - {{filterBy.division}}</span>
       </div>
     </div>
   </div>

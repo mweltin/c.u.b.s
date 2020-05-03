@@ -13,6 +13,7 @@ export class TeamComponent implements OnInit {
 
   teams: Team[];
   filterBy: TeamFilterInterface;
+  dropDownText: string;
 
   constructor(
     private teamSrv: TeamService,
@@ -22,6 +23,7 @@ export class TeamComponent implements OnInit {
   ngOnInit(): void {
     this.getTeams();
     this.filterBy = null;
+    this.dropDownText = 'Filter Teams';
   }
 
   getTeams(): void {
@@ -32,6 +34,12 @@ export class TeamComponent implements OnInit {
 
   setFilter( filter: TeamFilterInterface ): void {
     this.filterBy = filter;
+    if ( !filter) {
+      this.dropDownText = 'Filter Teams';
+    } else {
+      this.dropDownText = filter.league;
+      this.dropDownText  = filter.division ? this.dropDownText + ' - ' + filter.division : this.dropDownText;
+    }
   }
 
   setActiveTeam( team: Team){

@@ -1,11 +1,8 @@
 <div class="row">
-  <div class="col">
-    <a class="btn btn-primary" routerLink="/teams">Teams</a>
+  <div *ngIf=[selectedTeam] class="col" (click)="unsetPlayer()" routerLink="/roster">
+    {{ selectedTeam.name}}
   </div>
-  <div class="col">
-    {{ roster.team.name}}
-  </div>
-  <div class="col">
-    {{ player.first }} {{ player.last }}
+  <div *ngIf=[selectedPlayer] class="col" >
+    {{ selectedPlayer.first }} {{ selectedPlayer.last }}
   </div>
 </div>

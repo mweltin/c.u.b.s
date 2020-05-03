@@ -19,7 +19,7 @@ import { PitchOutcomeComponent } from './pitch-outcome/pitch-outcome.component';
     TeamComponent,
     TeamFilter,
     RosterComponent,
-    NavComponent
+    NavComponent,
     PitchOutcomeComponent
   ],
   imports: [

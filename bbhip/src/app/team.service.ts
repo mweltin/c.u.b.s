@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class TeamService {
   private teamUrl = 'cgi/get_teams.py';
-  public activeTeam: Team;
+  public selectedTeam: Team;
 
   constructor(private http: HttpClient) { }
 
@@ -17,7 +17,7 @@ export class TeamService {
   }
 
   setActiveTeam( aTeam: Team){
-    this.activeTeam = aTeam;
+    this.selectedTeam = aTeam;
   }
 
 }

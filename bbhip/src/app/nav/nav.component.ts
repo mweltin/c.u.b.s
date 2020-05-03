@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { PlayerService } from '../player.service.ts';
-import { TeamService } from '../team.service.ts';
+import { PlayerService } from '../player.service';
+import { TeamService } from '../team.service';
+import { Player } from '../player';
+import { Team } from '../team';
 
 @Component({
   selector: 'app-nav',
@@ -9,13 +11,20 @@ import { TeamService } from '../team.service.ts';
 })
 export class NavComponent implements OnInit {
 
+  public selectedTeam: Team;
+  public selectedPlayer: Player;
+
   constructor(
-    public playerSrv: PlayerServcie,
+    public playerSrv: PlayerService,
     public teamSrv: TeamService
   ) { }
 
   ngOnInit(): void {
-    
+    this.selectedPlayer = this.playerSrv.selectedPlayer;
+    this.selectedTeam = this.teamSrv.selectedTeam;
   }
 
+  unsetPlayer(): void{
+    this.playerSrv.setSelectePlayer(null);
+  }
 }

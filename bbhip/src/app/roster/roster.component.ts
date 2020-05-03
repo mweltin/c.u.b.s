@@ -33,7 +33,7 @@ export class RosterComponent implements OnInit {
       players: []
     };
 
-    this.roster.team = this.teamSrv.activeTeam;
+    this.roster.team = this.teamSrv.selectedTeam;
     this.getRoster(this.roster.team);
   }
 
