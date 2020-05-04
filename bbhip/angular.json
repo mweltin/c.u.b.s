@@ -29,7 +29,7 @@
               "src/.htaccess"
             ],
             "styles": [
-               "node_modules/bootstrap/scss/bootstrap.scss",
+              "src/bootstrap_override.scss",
               "src/styles.less"
             ],
             "scripts": []

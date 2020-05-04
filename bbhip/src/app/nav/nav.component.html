@@ -1,10 +1,10 @@
-<div class="container-fluid">
+<div class="container-fluid" *ngIf="selectedTeam">
   <div class="row nav-row">
-    <div *ngIf=selectedTeam class="col-3 clickable" (click)="unsetTeam(); unsetPlayer()" routerLink="/teams">
-      Teams
+    <div class="col-3" (click)="unsetTeam(); unsetPlayer()" routerLink="/teams">
+      <div class="clickable">Teams</div>
     </div>
-    <div *ngIf=selectedTeam class="col-4 clickable" (click)="unsetPlayer()" routerLink="/roster">
-      > {{ selectedTeam.name }}
+    <div *ngIf=selectedTeam class="col-4" (click)="unsetPlayer()" routerLink="/roster">
+      <div class="clickable">{{ selectedTeam.name }}</div>
     </div>
   </div>
 </div>
