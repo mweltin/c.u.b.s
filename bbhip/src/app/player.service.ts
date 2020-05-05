@@ -47,9 +47,9 @@ export class PlayerService {
     return this.http.get<Player[]>(url);
   }
 
-  getPitchOutcomeByPlayer(player: Player): Observable<PitchOutcome[]> {
+  getPitchOutcomeByPlayer(player: Player): Observable<any[]> {
     const url = `${this.pichOutcomeUrl}?player_id=${player.id}`;
-    return this.http.get<PitchOutcome[]>(url);
+    return this.http.get<any[]>(url);
   }
   
 }
