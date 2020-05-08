@@ -15,6 +15,8 @@ export class PitchOutcomeComponent implements OnInit {
   private dataLength;
   private pieData;
   private svg;
+  private chart;
+  private color = scaleOrdinal(['#4daf4a', '#377eb8', '#ff7f00', '#984ea3']);
 
   constructor(
     private playerSrv: PlayerService
@@ -38,7 +40,7 @@ export class PitchOutcomeComponent implements OnInit {
             }
           };
         });
-        this.svg = this.setup(refactor[0]);
+        this.setup(refactor[0]);
         this.currentIndex = 0;
         this.dataLength = refactor.length - 1;
         this.pieData = refactor;
@@ -75,35 +77,27 @@ export class PitchOutcomeComponent implements OnInit {
     const innerHeight = height - margin.top - margin.bottom;
 
     const arcs = pie()(Object.values(data));
-    const color = scaleOrdinal(['#4daf4a', '#377eb8', '#ff7f00', '#984ea3']);
-    const arcDim = arc().innerRadius(10)
-      .outerRadius(50);
 
-    const svg = select('svg');
+    this.svg = select('svg');
 
-    const g = svg.append('g')
+    this.chart = this.svg.append('g')
         .attr('width', width)
         .attr('height', height)
       .append('g')
         .attr('transform', `translate(${margin.left}, ${margin.top})`);
 
-    svg.on('wheel', () => {
+    this.svg.on('wheel', () => {
       this.LoadMoreData(event);
     });
-    return svg;
   }
 
   render(input): void {
 
     const data = input.data;
     const meta = input.meta;
-
-    /*
-    this.svg.append('text')
-      .text('Pitch Outcome ' + meta.year)
-      .attr('transform', `translate(75, 20)`);
-*/
-
+    const arcs = pie()(Object.values(data));
+    const arcDim = arc().innerRadius(10)
+    .outerRadius(50);
 
     const titleText = this.svg.selectAll('text.po-title').data([meta.year]);
 
@@ -119,18 +113,17 @@ export class PitchOutcomeComponent implements OnInit {
         (d) => {
           return 'Pitch Outcome ' + d;
         }
-      );
-/*
-/*
+	);
 
-    */
-/*
-    const chart = g.selectAll('path')
-      .data(arcs)
+    const pieChart = this.chart.selectAll('path')
+    .data(arcs);
+
+    pieChart
       .enter()
-      .append('path')
-      .style('fill', (d, i) => color(i) )
-      .attr('d', arcDim);
+        .append('path')
+      .merge(pieChart)
+        .attr('d', arcDim)
+        .style('fill', (d, i) => this.color(i) )
 
     const labels = [];
     Object.keys(data).forEach( (item) => {
@@ -138,33 +131,43 @@ export class PitchOutcomeComponent implements OnInit {
       labels.push(str);
     });
 
-    const legendG = svg.selectAll('.legend')
-      .data(labels)
-      .enter().append('g')
-      .attr('transform', (d, i) => {
-        return 'translate(150 , ' + (i * 20 + 40) + ')'; // place each legend on the right and bump each one down 15 pixels
-      })
-      .attr('class', 'legend');
+    const legendG = this.svg.selectAll('.legend').data(labels);
+    legendG.exit().remove();
 
-    legendG.append('circle')
+    legendG.enter()
+      .append('g')
+      .attr('transform', (d, i) => {
+        return 'translate(150 , ' + (i * 20 + 40) + ')'; // place each legend on the right
+	})
+      .attr('class', 'legend')
+      .append('circle')
       .attr('cx', 10)
       .attr('cy', 10)
       .attr('r', 9)
       .attr('fill',
       (d, i) => {
-        return color(i);
-      });
+        return this.color(i);
+	});
 
-    legendG.append('text')
-    .text( (d) => {
-      return d ;
-    } )
+    const legendT = this.svg.selectAll('text.po-detail').data(labels);
+    legendT.exit().remove();
+
+    legendT
+      .enter()
+      .append('text')
+      .attr('class', 'po-detail')
+      .attr('transform', (d, i) => {
+        return 'translate(150 , ' + (i * 20 + 40) + ')'; // place each legend on the right
+	})
       .style('font-size', 12)
       .attr('y', 10)
       .attr('x', 20)
       .attr('text-anchor', 'left')
-      .style('alignment-baseline', 'middle');
-      */
+      .style('alignment-baseline', 'middle')
+    .merge(legendT)
+    	.text( (d) => {
+      		return d ;
+    	} );
   }
 
 }
