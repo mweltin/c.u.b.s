@@ -11,11 +11,11 @@ import { PlayerService } from '../player.service';
 })
 export class PitchOutcomeComponent implements OnInit {
 
-  private currentIndex;
-  private dataLength;
-  private pieData;
-  private svg;
-  private chart;
+  private currentIndex: number;
+  private dataLength: number;
+  private pieData: any;
+  private svg: any;
+  private chart: any;
   private color = scaleOrdinal(['#4daf4a', '#377eb8', '#ff7f00', '#984ea3']);
 
   constructor(
@@ -32,19 +32,19 @@ export class PitchOutcomeComponent implements OnInit {
               year: d.year,
               total: d.total
             },
-            data: {
-              strikes: d.strikes,
-              balls: d.balls,
-              inPlay: d.in_play,
-              noAffect: d.no_affect
-            }
+            data: [
+              { label: 'Strikes', value: d.strikes, sortIndex: 0 },
+              { label: 'Balls', value: d.balls, sortIndex: 1 },
+              { label: 'In Play', value: d.in_play, sortIndex: 2 },
+              { label: 'No Affect', value: d.no_affect, sortIndex: 3 }
+            ]
           };
         });
-        this.setup(refactor[0]);
+        this.pieData = refactor;
+        this.setup();
         this.currentIndex = 0;
         this.dataLength = refactor.length - 1;
-        this.pieData = refactor;
-        this.render(refactor[0]);
+        this.render(this.pieData[this.currentIndex]);
       }
     );
   }
@@ -67,16 +67,11 @@ export class PitchOutcomeComponent implements OnInit {
     this.render(this.pieData[this.currentIndex]);
   }
 
-  setup(input) {
-    const data = input.data;
-    const meta = input.meta;
+  setup() {
+
     const height = 190;
     const width = 250;
     const margin = {top: 80, left: 70, bottom: 0, right: 0};
-    const innerWidth = width - margin.left - margin.right;
-    const innerHeight = height - margin.top - margin.bottom;
-
-    const arcs = pie()(Object.values(data));
 
     this.svg = select('svg');
 
@@ -95,7 +90,21 @@ export class PitchOutcomeComponent implements OnInit {
 
     const data = input.data;
     const meta = input.meta;
-    const arcs = pie()(Object.values(data));
+
+    const pieGenerator = pie()
+      .value((d) => {
+        return d.value;
+      })
+      /*
+      .sort((a, b) => {
+        return b.sortIndex < a.sortIndex ? -1 : b.sortIndex > a.sortIndex ? 1 : b.sortIndex >= a.sortIndex ? 0 : NaN;
+      });
+      */
+      .sort(null);
+
+    const arcs = pieGenerator(input.data);
+
+
     const arcDim = arc().innerRadius(10)
     .outerRadius(50);
 
@@ -104,30 +113,29 @@ export class PitchOutcomeComponent implements OnInit {
     titleText.exit().remove();
 
     titleText
-    	.enter()
-          .append('text')
-	  .attr('transform', `translate(75, 20)`)
-	  .attr('class', 'po-title')
+      .enter()
+      .append('text')
+      .attr('transform', `translate(75, 20)`)
+      .attr('class', 'po-title')
       .merge(titleText)
       .text(
         (d) => {
           return 'Pitch Outcome ' + d;
-        }
-	);
+        });
 
     const pieChart = this.chart.selectAll('path')
     .data(arcs);
 
     pieChart
       .enter()
-        .append('path')
+      .append('path')
       .merge(pieChart)
-        .attr('d', arcDim)
-        .style('fill', (d, i) => this.color(i) )
+      .attr('d', arcDim)
+      .style('fill', (d, i) => this.color(i));
 
     const labels = [];
-    Object.keys(data).forEach( (item) => {
-      const str = item + ' ' + (data[item] / meta.total * 100 ).toFixed(2) + ' %';
+    (data).forEach((item) => {
+      const str = item.label + ' ' + (item.value / meta.total * 100 ).toFixed(2) + ' %';
       labels.push(str);
     });
 
@@ -137,8 +145,8 @@ export class PitchOutcomeComponent implements OnInit {
     legendG.enter()
       .append('g')
       .attr('transform', (d, i) => {
-        return 'translate(150 , ' + (i * 20 + 40) + ')'; // place each legend on the right
-	})
+        return 'translate(150 , ' + (i * 20 + 40) + ')';
+      })
       .attr('class', 'legend')
       .append('circle')
       .attr('cx', 10)
@@ -146,8 +154,8 @@ export class PitchOutcomeComponent implements OnInit {
       .attr('r', 9)
       .attr('fill',
       (d, i) => {
-        return this.color(i);
-	});
+          return this.color(i);
+        });
 
     const legendT = this.svg.selectAll('text.po-detail').data(labels);
     legendT.exit().remove();
@@ -157,17 +165,17 @@ export class PitchOutcomeComponent implements OnInit {
       .append('text')
       .attr('class', 'po-detail')
       .attr('transform', (d, i) => {
-        return 'translate(150 , ' + (i * 20 + 40) + ')'; // place each legend on the right
-	})
+        return 'translate(150 , ' + (i * 20 + 40) + ')';
+      })
       .style('font-size', 12)
       .attr('y', 10)
       .attr('x', 20)
       .attr('text-anchor', 'left')
       .style('alignment-baseline', 'middle')
-    .merge(legendT)
-    	.text( (d) => {
-      		return d ;
-    	} );
+      .merge(legendT)
+      .text((d) => {
+        return d;
+      });
   }
 
 }
