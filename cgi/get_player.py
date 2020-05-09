@@ -1,8 +1,11 @@
-from os import environ
-import psycopg2
-import constants
 import json
-import cgi
+import urllib
+from os import environ
+from urllib.parse import urlparse
+
+import psycopg2
+
+import constants
 
 
 def start_response(status, headers):
@@ -18,13 +21,12 @@ def application(environ, start_response) -> list:
     headers = [('Content-type', 'application/json')]
     start_response(status, headers)
 
-    # Get data from fields
-    q = cgi.parse_qs(environ['QUERY_STRING'])
+    q = urllib.parse.parse_qs(environ['QUERY_STRING'])
 
     player_id = q.get('player_id')[0]
 
     # -*- coding: UTF-8 -*-# enable debugging
-    player_query = "SELECT * FROM player WHERE player_id = %s"
+    player_query = "SELECT * FROM player WHERE id = %s"
     connect_str = "user='" + constants.DB_USER + "' host='" + constants.DB_HOST + "' dbname='" + constants.DB + "'"
     try:
         conn = psycopg2.connect(connect_str)

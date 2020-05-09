@@ -1,4 +1,5 @@
-<div class="row">
+<div *ngIf="!player">Loading player data....</div>
+<div class="row" *ngIf="player">
   <div class="col">
     <h5 class="card-title">Player: {{player.first}}  {{player.last}}</h5>
   </div>
