@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import glob
 from zipfile import ZipFile
 import os

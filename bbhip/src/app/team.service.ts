@@ -19,7 +19,7 @@ export class TeamService {
     announceTeamChange(pTeam: Team) {
       this.selectedTeamSource.next(pTeam);
     }
-  
+
     setActiveTeam(inTeam: Team): void {
       this.selectedTeam = inTeam;
       this.announceTeamChange(inTeam);
