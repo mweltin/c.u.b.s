@@ -1,0 +1,7 @@
+{
+  "/cgi/*": {
+      "target": "http://bbhip.local",
+      "secure": false,
+      "logLevel": "debug"
+  }
+}
