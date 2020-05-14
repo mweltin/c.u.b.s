@@ -103,3 +103,6 @@ COMMENT ON TABLE public.event IS 'Retrosheet.org event table';
 COMMENT ON COLUMN event.batting_team IS 'Either 0 (for visiting team), or 1 (for home team).';
 COMMENT ON COLUMN event.batter IS 'Retrosheet player id for batter of this event';
 COMMENT ON COLUMN event.pitcher IS 'Retrosheep palyer id for pitcher of this event';
+
+COMMENT ON COLUMN event.ab_flag IS 'at bat event https://en.wikipedia.org/wiki/At_bat';
+COMMENT ON COLUMN event.hit_value IS 'result of an at bat 0 out/error/fielders choice, 1 single, 2 double, 3 triple, 4 home run';
