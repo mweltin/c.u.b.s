@@ -60,15 +60,16 @@ describe('player service test', () => {
       ump_debut: null
     };
 
-    service.getPlayer(10).subscribe(post => {
+    service.getPlayer('alberta103').subscribe(post => {
       expect(post).toEqual(testData);
     });
 
-    const req = httpTestingController.expectOne('cgi/get_player.py?player_id=10');
+    const req = httpTestingController.expectOne('cgi/get_player.py?player_id=alberta103');
 
     expect(req.request.method).toEqual('GET');
 
     // Respond with mock data, causing Observable to resolve.
+    // Subscribe callback asserts that correct data was returned.
     // Subscribe callback asserts that correct data was returned.
     req.flush(testData);
 

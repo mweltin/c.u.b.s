@@ -9,5 +9,6 @@
             "server": "localhost",
             "username": "bbhip"
         }
-    ]
+    ],
+    "god.tsconfig": "./bbhip/e2e/tsconfig.json"
 }
