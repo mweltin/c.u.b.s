@@ -13,6 +13,7 @@ ports some of the more useful hacks I found in that book to python.
  - angular 8+
  - apache 2.4+
  - mod_wsgi
+ - mod_rewrite
  
 
 **Database configuraiton**
