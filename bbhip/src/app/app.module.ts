@@ -11,6 +11,7 @@ import { TeamFilter } from './team/team.pipe';
 import { RosterComponent } from './roster/roster.component';
 import { NavComponent } from './nav/nav.component';
 import { PitchOutcomeComponent } from './pitch-outcome/pitch-outcome.component';
+import { PieChartComponent } from './pie-chart/pie-chart.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { PitchOutcomeComponent } from './pitch-outcome/pitch-outcome.component';
     TeamFilter,
     RosterComponent,
     NavComponent,
-    PitchOutcomeComponent
+    PitchOutcomeComponent,
+    PieChartComponent
   ],
   imports: [
     BrowserModule,
