@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Team } from '../team';
 import { TeamService } from '../team.service';
 import { DomSanitizer } from '@angular/platform-browser';
-import { TeamFilterInterface } from './team.pipe';
+import { TeamFilterInterface } from '../teamFilter';
+import { NavService } from '../nav.service';
 
 @Component({
   selector: 'app-team',
@@ -13,33 +14,29 @@ export class TeamComponent implements OnInit {
 
   teams: Team[];
   filterBy: TeamFilterInterface;
-  dropDownText: string;
+
 
   constructor(
     private teamSrv: TeamService,
-    public sanitizer: DomSanitizer
-  ) { }
+    public sanitizer: DomSanitizer,
+    public navSrv: NavService
+  ) {
+    // listen for filter changes from nav service
+      navSrv.filterChangeAccouncement.subscribe(
+        filter => {
+        this.filterBy = filter;
+    });
+  }
 
   ngOnInit(): void {
     this.getTeams();
     this.filterBy = null;
-    this.dropDownText = 'Filter Teams';
   }
 
   getTeams(): void {
     this.teamSrv.getTeams().subscribe(
       (data) => { this.teams = data; }
     );
-  }
-
-  setFilter( filter: TeamFilterInterface ): void {
-    this.filterBy = filter;
-    if ( !filter) {
-      this.dropDownText = 'Filter Teams';
-    } else {
-      this.dropDownText = filter.league;
-      this.dropDownText  = filter.division ? this.dropDownText + ' - ' + filter.division : this.dropDownText;
-    }
   }
 
   setActiveTeam( team: Team){

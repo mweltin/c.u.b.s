@@ -1,28 +1,4 @@
 <div class="row">
-  <div class="col filter-col">
-    <div class="btn-group mr-3" id="filter-dropdown">
-      <button type="button" class="btn btn-primary">
-        {{ dropDownText }}
-      </button>
-      <div class="btn-group" ngbDropdown role="group" aria-label="Button group with nested dropdown">
-        <button class="btn btn-primary dropdown-toggle-split" ngbDropdownToggle></button>
-        <div class="dropdown-menu" ngbDropdownMenu>
-          <button ngbDropdownItem (click)="setFilter({league:'American league'})">American League</button>
-          <button ngbDropdownItem (click)="setFilter({league:'American league', division:'east'})">- East</button>
-          <button ngbDropdownItem (click)="setFilter({league:'American league', division:'central'})">- Central</button>
-          <button ngbDropdownItem (click)="setFilter({league:'American league', division:'west'})">- West</button>
-          <button ngbDropdownItem (click)="setFilter({league:'National league'})">National League</button>
-          <button ngbDropdownItem (click)="setFilter({league:'National league', division:'east'})">- East</button>
-          <button ngbDropdownItem (click)="setFilter({league:'National league', division:'central'})">- Central</button>
-          <button ngbDropdownItem (click)="setFilter({league:'National league', division:'west'})">- West</button>
-          <button ngbDropdownItem (click)="setFilter(null)">Clear Filter</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="row">
   <div class="col-md-6 col-lg-4 col-xl-3" *ngFor="let team of teams | teamFilter: filterBy ">
     <a routerLink="/roster" (click)="setActiveTeam(team)">
       <img [src]='sanitizer.bypassSecurityTrustResourceUrl(team.logo_url)' alt="{{team.name}}">

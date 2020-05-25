@@ -1,10 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Team } from '../team';
+import { TeamFilterInterface } from '../teamFilter';
 
-export interface TeamFilterInterface {
-  league?: string;
-  division?: string;
- }
 
 @Pipe({
   name: 'teamFilter',

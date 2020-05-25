@@ -9,26 +9,28 @@ import { Observable, Subject } from 'rxjs';
 })
 export class TeamService {
 
-    public selectedTeam: Team;
-    private teamUrl = 'cgi/get_teams.py';
+  public selectedTeam: Team;
+  private teamUrl = 'cgi/get_teams.py';
 
-    // Observable Team sources
-    private selectedTeamSource = new Subject<Team>();
-    // Observable team streams (this is what consumers of the service subscribe to)
-    teamChangeAccouncement = this.selectedTeamSource.asObservable();
-    // Publish the fact that the selected team has changed.
-    announceTeamChange(pTeam: Team) {
-      this.selectedTeamSource.next(pTeam);
-    }
+  // Observable Team sources
+  private selectedTeamSource = new Subject<Team>();
 
-    setActiveTeam(inTeam: Team): void {
-      this.selectedTeam = inTeam;
-      this.announceTeamChange(inTeam);
-    }
+  // Observable team streams (this is what consumers of the service subscribe to)
+  teamChangeAccouncement = this.selectedTeamSource.asObservable();
 
-    constructor(private http: HttpClient) {}
+  // Publish the fact that the selected team has changed.
+  announceTeamChange(pTeam: Team) {
+    this.selectedTeamSource.next(pTeam);
+  }
 
-    getTeams(): Observable < Team[] > {
-      return this.http.get<Team[]>(this.teamUrl);
-    }
+  setActiveTeam(inTeam: Team): void {
+    this.selectedTeam = inTeam;
+    this.announceTeamChange(inTeam);
+  }
+
+  constructor(private http: HttpClient) { }
+
+  getTeams(): Observable<Team[]> {
+    return this.http.get<Team[]>(this.teamUrl);
+  }
 }
