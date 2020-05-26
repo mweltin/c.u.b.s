@@ -10,8 +10,9 @@ ports some of the more useful hacks I found in that book to python.
  - Postgres 10+
  - [Retro Sheet Tools](https://www.retrosheet.org/tools.htm)
  - wine 3.0+ (windows emulator for linux)
- - angular 8+
+ - angular 9+
  - apache 2.4+
+ - flask
  - mod_wsgi
  - mod_rewrite
  
@@ -54,20 +55,23 @@ Add a virtual host config file
         Require all granted
     </Directory>
 
-    WSGIDaemonProcess mweltin user=mweltin python-home=/home/mweltin/PycharmProjects/baseballHacksInPython/venv python-path=/home/mweltin/PycharmProjects/baseballHacksInPython
-    WSGIProcessGroup mweltin
-    WSGIApplicationGroup %{GLOBAL}
-
-    WSGIScriptAlias "/cgi/" "/home/mweltin/PycharmProjects/baseballHacksInPython/cgi/"
+    WSGIDaemonProcess mweltin user=mweltin python-home=/home/mweltin/PycharmProjects/baseballHacksInPython/venv python-path=/home/mweltin/PycharmProjects/baseballHacksInPythoni/cgi
+    WSGIScriptAlias "/cgi/" "/home/mweltin/PycharmProjects/baseballHacksInPython/cgi/bbhip.wsgi"
+    
     <Directory /home/mweltin/PycharmProjects/baseballHacksInPython/cgi>
+        WSGIProcessGroup mweltin
+        WSGIApplicationGroup %{GLOBAL}
         Require all granted
     </Directory>
 
 </VirtualHost>
 ```
 
-
 restart apache
+
+** Start Flask app **
+export FLASK_APP=cubsDataEndpoint.py
+flask run
 
 **TODO**  
 Either create a container (docker) or script install with Ansible

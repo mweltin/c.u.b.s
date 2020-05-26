@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-// import player service to get pitch outcome data
-import { pie, arc, scaleOrdinal, select, event } from 'd3';
 import { PlayerService } from '../player.service';
 
 
