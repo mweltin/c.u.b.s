@@ -1,0 +1,5 @@
+[prod]
+zissou ansible_python_interpreter=/usr/bin/python3 private_key_file=/home/mweltin/.ssh/zissou
+
+[dev]
+eleanor ansible_python_interpreter=/usr/bin/python3 private_key_file=/home/mweltin/.ssh/eleanor

@@ -1,0 +1,21 @@
+#!/usr/bin/env ansible-playbook
+---
+- hosts: webserver
+ 
+- import_playbook: playbooks/apache2.yml
+  vars:
+    project_dir: '/home/mweltin/PycharmProjects/baseballHacksInPython'
+    angular_dist_dir: "{{project_dir}}/bbhip/dist/bbhip"
+    doc_root: '/var/www/bbhip'
+    web_root: '/var/www'
+    server_name: 'www.mweltin.com'
+    server_alias: 'cubs.mweltin.com'
+    user: 'mweltin'
+    python_home: '/var/www/venv'  
+    python_path: '/var/www:/var/www/cgi'
+    wsgi_file: '/var/www/cgi/bbhip.wsgi' 
+    wsgi_script_alias: '/cgi'
+    cgi_path: '/var/www/cgi'
+    virtual_host: '192.168.0.2'
+
+

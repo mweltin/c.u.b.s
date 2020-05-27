@@ -1,0 +1,64 @@
+---
+- hosts: webserver 
+  become: yes
+  become_method: sudo
+  become_user: root
+
+  tasks:
+  - name: install apach2 is installed  
+    apt:
+      name: apache2
+      state: present
+
+  - name: set up cubs vhost 
+    template :
+      src: ../templates/bbhip.conf.j2
+      dest: /etc/apache2/sites-available/bbhip.conf 
+      owner: root
+      group: root
+      mode: '0644'
+
+  - name: Copy angular app to doc root
+    copy:
+      src: "{{ angular_dist_dir }}"
+      dest: "{{ web_root }}" 
+      owner: www-data
+      group: www-data
+      mode: 0755
+
+  - name: Copy flask app to cgi 
+    copy:
+      src: "{{ project_dir }}/cgi"
+      dest: "{{ web_root }}" 
+      owner: mweltin
+      group: mweltin
+      mode: 0755
+  
+  - name: copy bbhipBase.py
+    copy:
+      src: "{{ project_dir }}/bbhipBase.py"
+      dest: "{{ web_root }}" 
+      owner: mweltin
+      group: mweltin
+      mode: 0755
+
+  - name: copy constants.py
+    copy:
+      src: "{{ project_dir }}/constants.py"
+      dest: "{{ web_root }}" 
+      owner: mweltin
+      group: mweltin
+      mode: 0755
+    notify: 
+      - Restart Apache
+
+  handlers:
+    - name: Reload Apache
+      service:
+        name: apache2
+        state: reloaded
+
+    - name: Restart Apache
+      service:
+        name: apache2
+        state: restarted

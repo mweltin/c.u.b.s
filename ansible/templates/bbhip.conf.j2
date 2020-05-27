@@ -1,0 +1,22 @@
+<VirtualHost {{ virtual_host }}:80>
+    DocumentRoot "{{ doc_root }}"
+    ServerName {{ server_name }}
+    ServerAlias {{ server_alias }}
+
+    <Directory {{ doc_root }}>
+	AllowOverride All
+	Require all granted
+    </Directory>
+
+    WSGIDaemonProcess {{ user }} user={{ user }} python-home={{ python_home }} \
+	python-path={{ python_path }} threads=5
+
+    WSGIScriptAlias "{{ wsgi_script_alias }}" "{{ wsgi_file }}"
+    <Directory {{ cgi_path }}>
+    	WSGIProcessGroup {{ user }} 
+    	WSGIApplicationGroup %{GLOBAL}
+	Require all granted
+    </Directory>
+
+</VirtualHost>
+

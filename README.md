@@ -15,6 +15,7 @@ ports some of the more useful hacks I found in that book to python.
  - flask
  - mod_wsgi
  - mod_rewrite
+ - ansible 2.9+
  
 
 **Database configuraiton**
