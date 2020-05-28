@@ -30,7 +30,7 @@ export class TeamComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTeams();
-    this.filterBy = null;
+    this.filterBy = this.navSrv.currentFilter;
   }
 
   getTeams(): void {

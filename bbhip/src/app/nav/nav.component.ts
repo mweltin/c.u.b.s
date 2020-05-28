@@ -5,6 +5,7 @@ import { Player } from '../player';
 import { Team } from '../team';
 import { TeamFilterInterface } from '../teamFilter';
 import { NavService } from '../nav.service';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-nav',
@@ -16,11 +17,13 @@ export class NavComponent implements OnInit {
   public selectedTeam: Team;
   public selectedPlayer: Player;
   public dropDownText: string;
+  public currentFilter: TeamFilterInterface;
 
   constructor(
     public playerSrv: PlayerService,
     public teamSrv: TeamService,
-    public navSrv: NavService
+    public navSrv: NavService,
+    public router: Router
   ) {
     teamSrv.teamChangeAccouncement.subscribe(
       res => {
@@ -42,12 +45,15 @@ export class NavComponent implements OnInit {
 
   unsetTeam(): void{
     this.teamSrv.setActiveTeam(null);
+    this.router.navigate(['/teams'] );
+    this.setFilter( this.currentFilter );
   }
 
   setFilter( filter: TeamFilterInterface ): void {
     if ( !filter) {
       this.dropDownText = 'Filter Teams';
     } else {
+      this.currentFilter = filter;
       this.dropDownText = filter.league;
       this.dropDownText  = filter.division ? this.dropDownText + ' - ' + filter.division : this.dropDownText;
     }

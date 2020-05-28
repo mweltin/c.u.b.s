@@ -7,6 +7,7 @@ import { TeamFilterInterface } from './teamFilter';
 })
 export class NavService {
 
+  public currentFilter: TeamFilterInterface;
   constructor() { }
 
   // Observable
@@ -18,6 +19,7 @@ export class NavService {
   // Publish the fact that the selected team has changed.
   announceFilterChange(filter: TeamFilterInterface) {
     this.filterUpdate.next(filter);
+    this.currentFilter = filter;
   }
 
 }
