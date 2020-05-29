@@ -17,6 +17,8 @@
       owner: root
       group: root
       mode: '0644'
+    notify: 
+      - Restart Apache
 
   - name: Copy angular app to doc root
     copy:
@@ -49,8 +51,6 @@
       owner: mweltin
       group: mweltin
       mode: 0755
-    notify: 
-      - Restart Apache
 
   handlers:
     - name: Reload Apache
