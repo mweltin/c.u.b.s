@@ -6,8 +6,14 @@ class CubsBase:
     Class representing a HTTP application
     """
 
-    def __init__(self, db_user='postgres', db_pass='', db_host='localhost',
-                 db_port=5432, db_name='postgres'):
+    def __init__(
+        self,
+        db_user="postgres",
+        db_pass="",
+        db_host="localhost",
+        db_port=5432,
+        db_name="postgres",
+    ):
         """
         Initializes the app by creating a PostgreSQL connection and setting `self.cursor`
         and `self.conn`

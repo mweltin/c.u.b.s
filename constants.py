@@ -4,16 +4,17 @@ import psycopg2
 
 # Begin user defined constants
 # Define these constants to match your environment
-RETRO_TOOL_DIR = '/home/mweltin/Downloads/retrosheetTools'
-RETRO_DATA_DIR = '/home/mweltin/retroEvents'
+RETRO_TOOL_DIR = "/home/mweltin/Downloads/retrosheetTools"
+RETRO_DATA_DIR = "/home/mweltin/retroEvents"
 
-DB_HOST = 'localhost'
-DB_USER = 'bbhip'
-DB = 'bbhip'
+DB_HOST = "localhost"
+DB_USER = "bbhip"
+DB = "bbhip"
 
 
 # see README for password configuration instructions
 # End of user defined constants section
+
 
 def main() -> None:
     """
@@ -37,18 +38,18 @@ def main() -> None:
     if not os.path.isdir(RETRO_TOOL_DIR):
         raise Exception("Retro tools directory does not exist")
 
-    retro_tools = glob.glob(RETRO_TOOL_DIR + '/' + "*.EXE")
+    retro_tools = glob.glob(RETRO_TOOL_DIR + "/" + "*.EXE")
 
     retro_tools = list(map(lambda x: os.path.basename(x), retro_tools))
 
-    if 'BEVENT.EXE' not in retro_tools:
-        raise Exception('BEVENT.EXE was not found.')
+    if "BEVENT.EXE" not in retro_tools:
+        raise Exception("BEVENT.EXE was not found.")
 
-    if 'BGAME.EXE' not in retro_tools:
-        raise Exception('BGAME.EXE was not found.')
+    if "BGAME.EXE" not in retro_tools:
+        raise Exception("BGAME.EXE was not found.")
 
-    if 'BOX.EXE' not in retro_tools:
-        raise Exception('BOX.EXE was not found.')
+    if "BOX.EXE" not in retro_tools:
+        raise Exception("BOX.EXE was not found.")
 
     # Ensure database configuration is correct
     try:
