@@ -14,6 +14,7 @@ export class PlayerService {
   private playerUrl = 'cgi/get_player.py';
   private rosterUrl = 'cgi/roster';
   private pichOutcomeUrl =  'cgi/pitch_outcome';
+  private battingAverageUrl =  'cgi/batting_average';
   public selectedPlayer: Player;
 
   // Observable Team sources
@@ -47,4 +48,8 @@ export class PlayerService {
     return this.http.get<any[]>(url);
   }
 
+  getBattingAverageByPlayer(player: Player): Observable<any[]> {
+    const url = `${this.battingAverageUrl}/${player.id}`;
+    return this.http.get<any[]>(url);
+  }
 }

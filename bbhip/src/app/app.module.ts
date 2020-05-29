@@ -12,6 +12,7 @@ import { RosterComponent } from './roster/roster.component';
 import { NavComponent } from './nav/nav.component';
 import { PitchOutcomeComponent } from './pitch-outcome/pitch-outcome.component';
 import { PieChartComponent } from './pie-chart/pie-chart.component';
+import { BattingAvergeComponent } from './batting-averge/batting-averge.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { PieChartComponent } from './pie-chart/pie-chart.component';
     RosterComponent,
     NavComponent,
     PitchOutcomeComponent,
-    PieChartComponent
+    PieChartComponent,
+    BattingAvergeComponent
   ],
   imports: [
     BrowserModule,
