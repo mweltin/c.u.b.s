@@ -29,7 +29,9 @@ export class TeamComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getTeams();
+    if (!this.teams){
+      this.getTeams();
+    }
     this.filterBy = this.navSrv.currentFilter;
   }
 
