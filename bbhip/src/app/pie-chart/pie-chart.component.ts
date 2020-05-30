@@ -9,6 +9,7 @@ import { pie, arc, scaleOrdinal, select, event } from 'd3';
 export class PieChartComponent implements OnInit, OnChanges {
   @Input() pieData;
   @Input() identifier;
+  @Input() title;
 
   private currentIndex: number;
   private maxIndex: number;
@@ -76,7 +77,7 @@ export class PieChartComponent implements OnInit, OnChanges {
     const width = 250;
     const margin = {top: 80, left: 70, bottom: 0, right: 0};
 
-    this.svg = select('[identifier='+this.identifier + '] svg');
+    this.svg = select('[identifier=' + this.identifier + '] svg');
 
     this.chart = this.svg.append('g')
         .attr('width', width)
@@ -93,7 +94,7 @@ export class PieChartComponent implements OnInit, OnChanges {
   }
 
 
-  render(input): void {
+  render(input: any): void {
 
     const data = input.data;
     const meta = input.meta;
@@ -127,7 +128,7 @@ export class PieChartComponent implements OnInit, OnChanges {
       .merge(titleText)
       .text(
         (d) => {
-          return 'Pitch Outcome ' + d;
+          return this.title + ' ' + d;
         });
 
     const pieChart = this.chart.selectAll('path')
@@ -142,7 +143,7 @@ export class PieChartComponent implements OnInit, OnChanges {
 
     const labels = [];
     (data).forEach((item) => {
-      const str = item.label + ' ' + (item.value / meta.total * 100 ).toFixed(2) + ' %';
+      const str = item.label;
       labels.push(str);
     });
 

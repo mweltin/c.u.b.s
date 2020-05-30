@@ -25,8 +25,8 @@ export class BattingAvergeComponent implements OnInit {
               total: d.ba
             },
             data: [
-              { label: 'hits', value: d.hit, sortIndex: 0 },
-              { label: 'at bats', value: d.at_bat, sortIndex: 1 }
+              { label: 'Hits ' + d.hit, value: d.hit, sortIndex: 0 },
+              { label: 'At bats ' + d.at_bat, value: d.at_bat, sortIndex: 1 }
             ]
           };
         });
