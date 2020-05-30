@@ -33,12 +33,6 @@ export class PieChartComponent implements OnInit, OnChanges {
     }
   }
 
-  arcs() {
-    return arc().innerRadius(200)
-      .outerRadius(240)
-      .cornerRadius(15);
-  }
-
   scrollCallBack(e) {
     if (e.deltaY > 0 && this.currentIndex > 0) {
       this.currentIndex = this.currentIndex - 1;
