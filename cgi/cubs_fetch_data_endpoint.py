@@ -1,6 +1,6 @@
 from flask import Flask, jsonify
+import simplejson as json
 import constants
-import get_pitch_outcome_by_player
 import get_players_by_team
 import get_teams
 import get_player
@@ -49,7 +49,7 @@ def player(player_id):
         db_port=5432,
         db_name=constants.DB,
     )
-    resp = po.get_player_bio(player_id)
+    resp = po.get_player_bio()
     return jsonify(resp)
 
 
@@ -63,7 +63,7 @@ def pitch_outcome(player_id):
         db_port=5432,
         db_name=constants.DB,
     )
-    resp = po.pitch_outcome(player_id)
+    resp = po.pitch_outcome()
     return jsonify(resp)
 
 
@@ -77,8 +77,8 @@ def batting_average(player_id):
         db_port=5432,
         db_name=constants.DB,
     )
-    resp = po.batting_average(player_id)
-    return jsonify(resp)
+    resp = po.batting_average()
+    return json.dumps(resp)
 
 
 @app.route("/slugging/<player_id>")
@@ -91,7 +91,7 @@ def slugging(player_id):
         db_port=5432,
         db_name=constants.DB,
     )
-    resp = po.slugging(player_id)
+    resp = po.slugging()
     return jsonify(resp)
 
 
@@ -105,7 +105,7 @@ def on_base_plus_slugging(player_id):
         db_port=5432,
         db_name=constants.DB,
     )
-    resp = po.on_base_plus_slugging(player_id)
+    resp = po.on_base_plus_slugging()
     return jsonify(resp)
 
 

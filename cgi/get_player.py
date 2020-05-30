@@ -19,9 +19,13 @@ class PlayerData(bbhipBase.CubsBase):
             db_name=db_name,
         )
         self.player = player
+    
+    def player_bio(self):
+        query = "SELECT * FROM player WHERE id = %s"
+        return self.get_data(query)
 
     def batting_average(self):
-        query = "select * from batting_average(%s)"
+        query = 'select * from batting_average(%s)'
         return self.get_data(query)
 
     def slugging(self):
@@ -32,9 +36,6 @@ class PlayerData(bbhipBase.CubsBase):
         query = "select * from on_base_percentage(%s)"
         return self.get_data(query)
 
-    def player_bio(self):
-        query = "SELECT * FROM player WHERE id = %s"
-        return self.get_data(query)
 
     def pitch_outcome(self):
         query = """

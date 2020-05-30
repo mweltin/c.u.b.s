@@ -8,6 +8,7 @@ import { pie, arc, scaleOrdinal, select, event } from 'd3';
 })
 export class PieChartComponent implements OnInit, OnChanges {
   @Input() pieData;
+  @Input() identifier;
 
   private currentIndex: number;
   private maxIndex: number;
@@ -75,7 +76,7 @@ export class PieChartComponent implements OnInit, OnChanges {
     const width = 250;
     const margin = {top: 80, left: 70, bottom: 0, right: 0};
 
-    this.svg = select('svg');
+    this.svg = select('[identifier='+this.identifier + '] svg');
 
     this.chart = this.svg.append('g')
         .attr('width', width)
