@@ -10,6 +10,7 @@ export class PieChartComponent implements OnInit, OnChanges {
   @Input() pieData;
   @Input() identifier;
   @Input() title;
+  @Input() centerData;
 
   private currentIndex: number;
   private maxIndex: number;
@@ -50,7 +51,7 @@ export class PieChartComponent implements OnInit, OnChanges {
     }
     const direction = this.previousXTouch - e.changedTouches[0].clientX;
     // buffer to slow down how far you have to drag before taking action
-    if( Math.abs(direction) < 15 ){
+    if ( Math.abs(direction) < 15 ){
       return;
     }
     if (direction > 0 && this.currentIndex > 0) {
@@ -104,7 +105,7 @@ export class PieChartComponent implements OnInit, OnChanges {
       */
       .sort(null);
 
-    const arcs = pieGenerator(input.data);
+    const arcs = pieGenerator(data);
 
 
     const arcDim = arc().innerRadius(50)
@@ -175,8 +176,31 @@ export class PieChartComponent implements OnInit, OnChanges {
       .attr('text-anchor', 'left')
       .style('alignment-baseline', 'middle')
       .merge(legendT)
-      .text((d) => {
+      .text( ( d ) => {
         return d;
       });
+
+    if ( this.centerData ){
+      const CenterData = this.svg.selectAll('text.center-data').data([meta[this.centerData]]);
+      CenterData.exit().remove();
+
+      CenterData
+        .enter()
+        .append('text')
+        .attr('class', 'center-data')
+        .attr('transform', (d, i) => {
+          return 'translate(34 , 70)';
+        })
+        .style('font-size', 14)
+        .style('font-face', 'bold')
+        .attr('y', 10)
+        .attr('x', 20)
+        .attr('text-anchor', 'left')
+        .style('alignment-baseline', 'middle')
+        .merge(CenterData)
+        .text((d) => {
+          return d;
+        });
+    }
   }
 }

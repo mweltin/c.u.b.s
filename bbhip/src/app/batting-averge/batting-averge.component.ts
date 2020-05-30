@@ -22,7 +22,7 @@ export class BattingAvergeComponent implements OnInit {
           return {
             meta: {
               year: d.year,
-              total: d.ba
+              total: d.ba.toFixed(3)
             },
             data: [
               { label: 'Hits ' + d.hit, value: d.hit, sortIndex: 0 },
