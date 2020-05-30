@@ -34,7 +34,7 @@ export class PieChartComponent implements OnInit, OnChanges {
   }
 
   arcs() {
-    return arc().innerRadius(100)
+    return arc().innerRadius(200)
       .outerRadius(240)
       .cornerRadius(15);
   }
@@ -113,8 +113,8 @@ export class PieChartComponent implements OnInit, OnChanges {
     const arcs = pieGenerator(input.data);
 
 
-    const arcDim = arc().innerRadius(10)
-    .outerRadius(50);
+    const arcDim = arc().innerRadius(50)
+    .outerRadius(25);
 
     const titleText = this.svg.selectAll('text.po-title').data([meta.year]);
 
