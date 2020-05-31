@@ -92,11 +92,11 @@ def slugging(player_id):
         db_name=constants.DB,
     )
     resp = po.slugging()
-    return jsonify(resp)
+    return json.dumps(resp)
 
 
-@app.route("/ops/<player_id>")
-def on_base_plus_slugging(player_id):
+@app.route("/on_base_percentage/<player_id>")
+def on_base_percentage(player_id):
     po = get_player.PlayerData(
         player_id,
         db_user=constants.DB_USER,
@@ -105,8 +105,8 @@ def on_base_plus_slugging(player_id):
         db_port=5432,
         db_name=constants.DB,
     )
-    resp = po.on_base_plus_slugging()
-    return jsonify(resp)
+    resp = po.on_base_percentage()
+    return json.dumps(resp)
 
 
 if __name__ == "__main__":

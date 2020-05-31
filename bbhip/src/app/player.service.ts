@@ -15,6 +15,8 @@ export class PlayerService {
   private rosterUrl = 'cgi/roster';
   private pichOutcomeUrl =  'cgi/pitch_outcome';
   private battingAverageUrl =  'cgi/batting_average';
+  private sluggingUrl =  'cgi/slugging';
+  private OBPUrl =  'cgi/on_base_percentage';
   public selectedPlayer: Player;
 
   // Observable Team sources
@@ -50,6 +52,16 @@ export class PlayerService {
 
   getBattingAverageByPlayer(player: Player): Observable<any[]> {
     const url = `${this.battingAverageUrl}/${player.id}`;
+    return this.http.get<any[]>(url);
+  }
+
+  getSluggingByPlayer(player: Player): Observable<any[]> {
+    const url = `${this.sluggingUrl}/${player.id}`;
+    return this.http.get<any[]>(url);
+  }
+
+  getOnBasePercentageByPlayer(player: Player): Observable<any[]> {
+    const url = `${this.OBPUrl}/${player.id}`;
     return this.http.get<any[]>(url);
   }
 }

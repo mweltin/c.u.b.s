@@ -13,6 +13,8 @@ import { NavComponent } from './nav/nav.component';
 import { PitchOutcomeComponent } from './pitch-outcome/pitch-outcome.component';
 import { PieChartComponent } from './pie-chart/pie-chart.component';
 import { BattingAvergeComponent } from './batting-averge/batting-averge.component';
+import { SluggingComponent } from './slugging/slugging.component';
+import { OnBasePercentageComponent } from './on-base-percentage/on-base-percentage.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { BattingAvergeComponent } from './batting-averge/batting-averge.componen
     NavComponent,
     PitchOutcomeComponent,
     PieChartComponent,
-    BattingAvergeComponent
+    BattingAvergeComponent,
+    SluggingComponent,
+    OnBasePercentageComponent
   ],
   imports: [
     BrowserModule,

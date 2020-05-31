@@ -32,7 +32,7 @@ class PlayerData(bbhipBase.CubsBase):
         query = "select * from slugging(%s)"
         return self.get_data(query)
 
-    def on_base_plus_slugging(self):
+    def on_base_percentage(self):
         query = "select * from on_base_percentage(%s)"
         return self.get_data(query)
 
