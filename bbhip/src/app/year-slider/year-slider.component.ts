@@ -1,9 +1,10 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { line, select, scaleLinear} from 'd3';
 @Component({
   selector: 'app-year-slider',
   templateUrl: './year-slider.component.html',
-  styleUrls: ['./year-slider.component.less']
+  styleUrls: ['./year-slider.component.less'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class YearSliderComponent implements OnInit, OnChanges  {
 
@@ -53,11 +54,10 @@ export class YearSliderComponent implements OnInit, OnChanges  {
 
     lines
     .enter()
+    .append('path')
+    .attr('class', 'year-slider-line')
     .merge(lines)
-      .append('path')
-      .attr('d', this.line( data ) )
-      .attr('stroke', 'black')
-      .attr('stroke-width', 5);
+    .attr('d', this.line( data ) );
 
     const circles = this.chart.selectAll('circle').data(data);
 
@@ -70,6 +70,6 @@ export class YearSliderComponent implements OnInit, OnChanges  {
       .attr('cx', ( d ) => 10 )
       .attr('cy', (d, i) => yScale(i) )
       .attr('r', (d) => 8 )
-      .style('fill', 'red');
+      .attr('class', 'year-slider-circle');
   }
 }

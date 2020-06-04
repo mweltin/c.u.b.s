@@ -31,7 +31,7 @@ export class NavComponent implements OnInit {
     });
     playerSrv.palyerChangeAccouncement.subscribe(
       res => {
-        this.selectedPlayer = res;
+      this.selectedPlayer = res;
     });
   }
 
