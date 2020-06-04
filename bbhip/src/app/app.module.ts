@@ -15,6 +15,7 @@ import { PieChartComponent } from './pie-chart/pie-chart.component';
 import { BattingAvergeComponent } from './batting-averge/batting-averge.component';
 import { SluggingComponent } from './slugging/slugging.component';
 import { OnBasePercentageComponent } from './on-base-percentage/on-base-percentage.component';
+import { YearSliderComponent } from './year-slider/year-slider.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { OnBasePercentageComponent } from './on-base-percentage/on-base-percenta
     PieChartComponent,
     BattingAvergeComponent,
     SluggingComponent,
-    OnBasePercentageComponent
+    OnBasePercentageComponent,
+    YearSliderComponent
   ],
   imports: [
     BrowserModule,
