@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges, ViewEncapsulation } from '@angular/core';
-import { line, select, scaleLinear} from 'd3';
+import { line, select, scaleLinear, event, selectAll} from 'd3';
 @Component({
   selector: 'app-year-slider',
   templateUrl: './year-slider.component.html',
@@ -23,11 +23,21 @@ export class YearSliderComponent implements OnInit, OnChanges  {
   }
 
 
+  clickCallBack(d, i, n) {
+    console.log(d);
+    n.forEach(element => {
+       select(element).attr('r', 10);
+    });
+    select(n[i]).attr('r', 15);
+  }
+
+
+
   setup() {
     const data = [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019 ];
     const height = 600;
-    const width = 50;
-    const margin = {top: 20, left: 0, bottom: 0, right: 0};
+    const width = 25;
+    const margin = {top: 20, left: 5, bottom: 0, right: 0};
 
     this.svg = select('app-year-slider svg');
 
@@ -59,7 +69,7 @@ export class YearSliderComponent implements OnInit, OnChanges  {
     .merge(lines)
     .attr('d', this.line( data ) );
 
-    const circles = this.chart.selectAll('circle').data(data);
+    const circles = this.chart.selectAll('year-circle').data(data);
 
     circles.exit().remove();
 
@@ -70,6 +80,7 @@ export class YearSliderComponent implements OnInit, OnChanges  {
       .attr('cx', ( d ) => 10 )
       .attr('cy', (d, i) => yScale(i) )
       .attr('r', (d) => 8 )
-      .attr('class', 'year-slider-circle');
+      .attr('class', 'year-slider-circle')
+      .on('click', this.clickCallBack) ;
   }
 }
