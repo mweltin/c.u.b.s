@@ -27,7 +27,11 @@ export class PieChartComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.pieData.currentValue) {
+    if (changes.displayYear && changes.displayYear.currentValue){
+      const yearIndex = this.pieData.findIndex(x => x.meta.year === changes.displayYear.currentValue);
+      this.render(this.pieData[yearIndex]);
+    }
+    if (changes.pieData && changes.pieData.currentValue) {
       this.currentIndex = 0;
       this.pieData = changes.pieData.currentValue;
       this.maxIndex = this.pieData.length - 1;
