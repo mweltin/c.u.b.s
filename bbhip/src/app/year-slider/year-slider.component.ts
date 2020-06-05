@@ -75,12 +75,28 @@ export class YearSliderComponent implements OnInit, OnChanges  {
       .attr('r', (d) => 8 )
       .attr('class', 'year-slider-circle')
       .on('click', (d, i, n) => {
-        console.log(d);
         n.forEach(element => {
            select(element).attr('r', 10);
         });
         select(n[i]).attr('r', 15);
         this.playerSrv.announceDisplayDateChange(d);
+      });
+
+    const legendT = this.chart.selectAll('text.year-select-label').data(data);
+    legendT.exit().remove();
+
+    legendT
+      .enter()
+      .append('text')
+      .attr('class', 'year-select-label')
+      .style('font-size', 12)
+      .attr('y', (d, i) => yScale(i) )
+      .attr('x', 30)
+      .attr('text-anchor', 'left')
+      .style('alignment-baseline', 'middle')
+      .merge(legendT)
+      .text( ( d ) => {
+        return d;
       });
   }
 }

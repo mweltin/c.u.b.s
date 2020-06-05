@@ -36,7 +36,7 @@ export class NavComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.dropDownText = 'Filter Teams';
+    this.dropDownText = 'Teams';
   }
 
   unsetPlayer(): void{
