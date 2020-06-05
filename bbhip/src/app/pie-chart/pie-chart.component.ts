@@ -68,7 +68,6 @@ export class PieChartComponent implements OnInit, OnChanges {
     }
     this.render(this.pieData[this.currentIndex]);
     this.previousXTouch = e.changedTouches[0].clientX;
-    console.log(direction);
   }
 
   setup() {

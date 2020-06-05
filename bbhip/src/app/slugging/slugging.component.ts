@@ -9,6 +9,7 @@ import { PlayerService } from '../player.service';
 export class SluggingComponent implements OnInit {
 
   poData: any;
+  slgDisplayYear: number;
 
   constructor(
     private playerSrv: PlayerService
@@ -23,8 +24,8 @@ export class SluggingComponent implements OnInit {
             meta: {
               year: d.year,
               total: d.slg.toFixed(3),
-	      hits: d.hits,
-	      at_bats: d.at_bats
+              hits: d.hits,
+              at_bats: d.at_bats
             },
             data: [
               { label: 'Singles ' + d.singles, value: d.singles, sortIndex: 0 },
@@ -37,6 +38,11 @@ export class SluggingComponent implements OnInit {
         this.poData = refactor;
       }
     );
+
+    this.playerSrv.displayYearAccouncement.subscribe(
+      res => {
+      this.slgDisplayYear = res;
+    });
   }
 
 }

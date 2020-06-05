@@ -27,7 +27,7 @@ export class YearSliderComponent implements OnInit, OnChanges  {
   }
 
   setup() {
-    const data = [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019 ];
+    const data = [ 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012, 2011, 2010];
     const height = 600;
     const width = 25;
     const margin = {top: 20, left: 5, bottom: 0, right: 0};

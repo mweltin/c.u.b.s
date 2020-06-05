@@ -9,6 +9,7 @@ import { PlayerService } from '../player.service';
 export class OnBasePercentageComponent implements OnInit {
 
   poData: any;
+  obDisplayYear: number;
 
   constructor(
     private playerSrv: PlayerService
@@ -23,7 +24,7 @@ export class OnBasePercentageComponent implements OnInit {
             meta: {
               year: d.year,
               total: d.obp.toFixed(3)
-	    },
+	          },
             data: [
               { label: 'Hits ' + d.hit, value: d.hit, sortIndex: 0 },
               { label: 'Walks ' + d.walk, value: d.walk, sortIndex: 0 },
@@ -35,6 +36,11 @@ export class OnBasePercentageComponent implements OnInit {
         this.poData = refactor;
       }
     );
+
+    this.playerSrv.displayYearAccouncement.subscribe(
+      res => {
+      this.obDisplayYear = res;
+    });
   }
 
 }
