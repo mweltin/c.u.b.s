@@ -9,6 +9,7 @@ import { PlayerService } from '../player.service';
 export class BattingAvergeComponent implements OnInit {
 
   poData: any;
+  baDisplayYear: number;
 
   constructor(
     private playerSrv: PlayerService
@@ -33,6 +34,12 @@ export class BattingAvergeComponent implements OnInit {
         this.poData = refactor;
       }
     );
+
+    this.playerSrv.displayYearAccouncement.subscribe(
+      res => {
+      this.baDisplayYear = res;
+    });
+
   }
 
 }

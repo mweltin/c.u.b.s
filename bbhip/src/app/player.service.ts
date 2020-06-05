@@ -11,6 +11,8 @@ import { PitchOutcome } from './pitchOutcome';
 
 export class PlayerService {
 
+  constructor(private http: HttpClient) { }
+
   private playerUrl = 'cgi/get_player.py';
   private rosterUrl = 'cgi/roster';
   private pichOutcomeUrl =  'cgi/pitch_outcome';
@@ -18,11 +20,19 @@ export class PlayerService {
   private sluggingUrl =  'cgi/slugging';
   private OBPUrl =  'cgi/on_base_percentage';
   public selectedPlayer: Player;
+  public currentDisplayYear: number;
+  // Observable display date sources
+  private displayYear = new Subject<number>();
 
-  // Observable Team sources
+  // Observable Player sources
   private selectedPlayerSource = new Subject<Player>();
-  // Observable team streams (this is what consumers of the service subscribe to)
+  // Observable Player streams (this is what consumers of the service subscribe to)
   palyerChangeAccouncement = this.selectedPlayerSource.asObservable();
+
+  // Observable streams (this is what consumers of the service subscribe to)
+  displayYearAccouncement = this.displayYear.asObservable();
+
+
   // Publish the fact that the selected team has changed.
   announcePlayerChange(dPlyaer: Player) {
     this.selectedPlayerSource.next(dPlyaer);
@@ -33,7 +43,12 @@ export class PlayerService {
     this.announcePlayerChange(inPlyaer);
   }
 
-  constructor(private http: HttpClient) { }
+  // Publish the fact that the selected display Year has changed.
+  announceDisplayDateChange(year: number) {
+    this.displayYear.next(year);
+    this.currentDisplayYear = year;
+  }
+
 
   getPlayer(id: string): Observable<Player> {
     const url = `${this.playerUrl}?player_id=${id}`;

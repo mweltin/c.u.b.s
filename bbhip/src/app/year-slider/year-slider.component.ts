@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { line, select, scaleLinear, event, selectAll} from 'd3';
+import { PlayerService } from '../player.service';
+
 @Component({
   selector: 'app-year-slider',
   templateUrl: './year-slider.component.html',
@@ -8,7 +10,9 @@ import { line, select, scaleLinear, event, selectAll} from 'd3';
 })
 export class YearSliderComponent implements OnInit, OnChanges  {
 
-  constructor() { }
+  constructor(
+    public playerSrv: PlayerService
+  ) { }
 
   private svg: any;
   private line: any;
@@ -17,21 +21,6 @@ export class YearSliderComponent implements OnInit, OnChanges  {
   ngOnInit(): void {
     this.setup();
   }
-
-  ngOnChanges(changes: SimpleChanges): void {
-
-  }
-
-
-  clickCallBack(d, i, n) {
-    console.log(d);
-    n.forEach(element => {
-       select(element).attr('r', 10);
-    });
-    select(n[i]).attr('r', 15);
-  }
-
-
 
   setup() {
     const data = [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019 ];
@@ -81,6 +70,13 @@ export class YearSliderComponent implements OnInit, OnChanges  {
       .attr('cy', (d, i) => yScale(i) )
       .attr('r', (d) => 8 )
       .attr('class', 'year-slider-circle')
-      .on('click', this.clickCallBack) ;
+      .on('click', (d, i, n) => {
+        console.log(d);
+        n.forEach(element => {
+           select(element).attr('r', 10);
+        });
+        select(n[i]).attr('r', 15);
+        this.playerSrv.announceDisplayDateChange(d);
+      });
   }
 }

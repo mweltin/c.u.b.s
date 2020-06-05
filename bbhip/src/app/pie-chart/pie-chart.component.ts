@@ -11,6 +11,7 @@ export class PieChartComponent implements OnInit, OnChanges {
   @Input() identifier;
   @Input() title;
   @Input() centerData;
+  @Input() displayYear;
 
   private currentIndex: number;
   private maxIndex: number;
