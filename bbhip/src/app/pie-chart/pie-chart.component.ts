@@ -95,8 +95,21 @@ export class PieChartComponent implements OnInit, OnChanges {
 
   render(input: any): void {
 
-    const data = input.data;
-    const meta = input.meta;
+    let data;
+    let meta;
+
+    if ( input ){
+      data = input.data;
+      meta = input.meta;
+    } else {
+      data = [
+        { label: 'no data', value: 1, sortIndex: 0 },
+        { label: 'no data', value: 1, sortIndex: 0 },
+        { label: 'no data', value: 1, sortIndex: 0 },
+        { label: 'no data', value: 1, sortIndex: 0 }
+      ];
+      meta = {year: this.displayYear, total: null};
+    }
 
     const pieGenerator = pie()
       .value((d: any) => {

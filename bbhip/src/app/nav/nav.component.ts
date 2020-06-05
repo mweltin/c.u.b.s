@@ -51,7 +51,7 @@ export class NavComponent implements OnInit {
 
   setFilter( filter: TeamFilterInterface ): void {
     if ( !filter) {
-      this.dropDownText = 'Filter Teams';
+      this.dropDownText = 'Teams';
     } else {
       this.currentFilter = filter;
       this.dropDownText = filter.league;

@@ -30,8 +30,8 @@ export class SluggingComponent implements OnInit {
             data: [
               { label: 'Singles ' + d.singles, value: d.singles, sortIndex: 0 },
               { label: 'Doubles ' + d.doubles, value: d.doubles, sortIndex: 1 },
-              { label: 'Triples ' + d.triples, value: d.triples, sortIndex: 1 },
-              { label: 'Homers ' + d.homers, value: d.homers, sortIndex: 1 }
+              { label: 'Triples ' + d.triples, value: d.triples, sortIndex: 2 },
+              { label: 'Homers ' + d.homers, value: d.homers, sortIndex: 3 }
             ]
           };
         });
