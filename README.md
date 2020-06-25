@@ -5,6 +5,10 @@ baseball analytics.  The only strike against it is the fact that all the hacks a
 written in Perl.  Perl is a language I'm just not that comfortable with.  This repo is 
 ports some of the more useful hacks I found in that book to python. 
 
+**Demo Site**
+[cubs.mweltin.com](http://cubs.mweltin.com)
+*note: don't expect high performance its served up from a laptop over a dsl connection with dynamic DNS.
+
 **Dependencies**
  - Python 3
  - Postgres 10+
