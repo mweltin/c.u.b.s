@@ -8,6 +8,7 @@
 \i table/game_table_definition.sql
 \i table/pitch_sequence_type.sql
 \i table/player_table_definition.sql
+\i table/play_modifier.sql
 
 -- define data types
 \i data_type/parsed_pitch_sequence.sql
