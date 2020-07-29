@@ -10,8 +10,8 @@ DECLARE
 BEGIN
     RETURN QUERY
     SELECT 
-    ( SUM(t1.er_hr) + SUM(t1.er_first) + sum(t1.er_second) + sum(t1.er_third) )::INTEGER AS earned_runs,
-    ( SUM(t1.ur_hr) + SUM(t1.ur_first) + sum(t1.ur_second) + sum(t1.ur_third) )::INTEGER AS unerned_runs
+    COALESCE( ( SUM(t1.er_hr) + SUM(t1.er_first) + sum(t1.er_second) + sum(t1.er_third) ),0 )::INTEGER AS earned_runs,
+    COALESCE( ( SUM(t1.ur_hr) + SUM(t1.ur_first) + sum(t1.ur_second) + sum(t1.ur_third) ) ,0)::INTEGER AS unerned_runs
     FROM (
         SELECT
             CASE WHEN batter_dest = 4 THEN 1 ELSE 0 END AS er_hr,

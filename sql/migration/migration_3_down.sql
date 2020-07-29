@@ -1,0 +1,1 @@
+drop index game_id_idx;

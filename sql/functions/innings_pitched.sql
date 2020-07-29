@@ -20,7 +20,7 @@ BEGIN
         order by event_id desc
         limit 1
     ) t1;
-    return v_innings_pitched;
+    return COALESCE( v_innings_pitched, 0);
 END;
 $$ LANGUAGE plpgsql;
 
