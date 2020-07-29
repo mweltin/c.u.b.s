@@ -36,6 +36,9 @@ class PlayerData(bbhipBase.CubsBase):
         query = "select * from on_base_percentage(%s)"
         return self.get_data(query)
 
+    def era(self):
+        query = "select * from era(%s)"
+        return self.get_data(query)
 
     def pitch_outcome(self):
         query = """

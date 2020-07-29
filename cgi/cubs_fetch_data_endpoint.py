@@ -108,6 +108,18 @@ def on_base_percentage(player_id):
     resp = po.on_base_percentage()
     return json.dumps(resp)
 
+@app.route("/era/<player_id>")
+def era(player_id):
+    po = get_player.PlayerData(
+        player_id,
+        db_user=constants.DB_USER,
+        db_pass="",
+        db_host=constants.DB_HOST,
+        db_port=5432,
+        db_name=constants.DB,
+    )
+    resp = po.era()
+    return json.dumps(resp)
 
 if __name__ == "__main__":
     app.run()
