@@ -1,0 +1,13 @@
+You can use the image mweltin/bbhip-1 on dockerHub it contains a dump of the database as of 7/29/2020
+
+The image assume there is a directory /opt/bbhip/data that is empty when the image is run
+
+Running this image will create all the postgres data files on in /opt/bbhip/data 
+
+it will also create the bbhip database and populate it with data. 
+
+If you want to build the image yourself you will need to create the database and take a 
+
+compressed dump of the data, name the file bbhip.dump and add it to the docker-entrypoint-initdb.d 
+
+directory.
