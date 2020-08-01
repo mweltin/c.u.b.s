@@ -17,7 +17,7 @@ def index():
 def roster(team_id):
     po = get_players_by_team.PlayersByTeam(
         db_user=constants.DB_USER,
-        db_pass="",
+        db_pass=constants.DB_PASS,
         db_host=constants.DB_HOST,
         db_port=5432,
         db_name=constants.DB,
@@ -30,7 +30,7 @@ def roster(team_id):
 def team_list():
     po = get_teams.GetTeams(
         db_user=constants.DB_USER,
-        db_pass="",
+        db_pass=constants.DB_PASS,
         db_host=constants.DB_HOST,
         db_port=5432,
         db_name=constants.DB,
@@ -44,7 +44,7 @@ def player(player_id):
     po = get_player.PlayerData(
         player_id,
         db_user=constants.DB_USER,
-        db_pass="",
+        db_pass=constants.DB_PASS,
         db_host=constants.DB_HOST,
         db_port=5432,
         db_name=constants.DB,
@@ -58,7 +58,7 @@ def pitch_outcome(player_id):
     po = get_player.PlayerData(
         player_id,
         db_user=constants.DB_USER,
-        db_pass="",
+        db_pass=constants.DB_PASS,
         db_host=constants.DB_HOST,
         db_port=5432,
         db_name=constants.DB,
@@ -72,7 +72,7 @@ def batting_average(player_id):
     po = get_player.PlayerData(
         player_id,
         db_user=constants.DB_USER,
-        db_pass="",
+        db_pass=constants.DB_PASS,
         db_host=constants.DB_HOST,
         db_port=5432,
         db_name=constants.DB,
@@ -86,7 +86,7 @@ def slugging(player_id):
     po = get_player.PlayerData(
         player_id,
         db_user=constants.DB_USER,
-        db_pass="",
+        db_pass=constants.DB_PASS,
         db_host=constants.DB_HOST,
         db_port=5432,
         db_name=constants.DB,
@@ -100,7 +100,7 @@ def on_base_percentage(player_id):
     po = get_player.PlayerData(
         player_id,
         db_user=constants.DB_USER,
-        db_pass="",
+        db_pass=constants.DB_PASS,
         db_host=constants.DB_HOST,
         db_port=5432,
         db_name=constants.DB,
@@ -113,7 +113,7 @@ def era(player_id):
     po = get_player.PlayerData(
         player_id,
         db_user=constants.DB_USER,
-        db_pass="",
+        db_pass=constants.DB_PASS,
         db_host=constants.DB_HOST,
         db_port=5432,
         db_name=constants.DB,
