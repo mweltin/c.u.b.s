@@ -37,9 +37,9 @@ You can build the images your self or use the ones located on [dockerhub](https:
    - $docker network create cubs-net
  - Create DB container
    - create the mount point on the docker host /opt/cubs/data
-   - docker run -d -p 5432:5432 --name cubs-db -e POSTGRES_PASSWORD=password --network cubs-net -v /opt/cubs/data:/var/lib/postgresql/data mweltin/cubs-db:ver-1.0.0
+   - docker run -d -p 5432:5432 --name cubs-db -e POSTGRES_PASSWORD=password --network cubs-net -v /opt/cubs/data:/var/lib/postgresql/data mweltin/cubs-db:1.0.0
  - Create api endpoint
-   - docker run -d -p 5000:5000 --name cubs-api --network cubs-net mweltin/cubs-api:ver-1.0.0
+   - docker run -d -p 5000:5000 --name cubs-api --network cubs-net mweltin/cubs-api:1.0.0
  - Create web app container
-  - docker run -d -p 80:80 --name cubs-web --network cubs-net mweltin/cubs-web:ver-1.0.0
+  - docker run -d -p 80:80 --name cubs-web --network cubs-net mweltin/cubs-web:1.0.0
  
