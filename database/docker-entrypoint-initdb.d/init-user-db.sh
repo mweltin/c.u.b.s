@@ -2,13 +2,12 @@
 set -e
 
 psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-EOSQL
-    CREATE USER bbhip;
-    CREATE DATABASE bbhip;
-    CREATE DATABASE bbhip2;
+    CREATE USER cubs;
+    CREATE DATABASE cubs;
     GRANT ALL PRIVILEGES ON DATABASE bbhip TO bbhip;
 EOSQL
 
-file="/docker-entrypoint-initdb.d/bbhip.dump"
+file="/docker-entrypoint-initdb.d/cubs.dump"
 dbname=bbhip
 
 echo "Restoring DB using $file"
