@@ -5,3 +5,4 @@ __pycache__/
 node_modules/
 **/dist/
 .angulardoc.json
+database/docker-entrypoint-initdb.d/cubs.dump

@@ -15,38 +15,31 @@ not that comfortable with.  This repo is ports some of the more useful hacks I f
  - [Retro Sheet Tools](https://www.retrosheet.org/tools.htm)
  - wine 3.0+ (windows emulator for linux)
  - angular 9+
- - apache 2.4+
  - flask
- - mod_wsgi
- - mod_rewrite
  - ansible 2.9+
+ - docker
  
 
-**Database configuration**
-
-Install the latest postgres package.  There are several ways to add users. 
-Start by creating a 'bbhip' user for your database with the following commands
-$ su - postgres
-$ createuser --interactive --pwprompt
-Answer the prompts, naming the user 'bbhip' and allowing it to create databases
-
-Create a file ~/.pgpass add the following line replacing <password> 
-with the password defined for the bbhip user
-
-localhost:5432:*:bbhip:<password> 
-
-Set the permissions on the .pgpass file to read only
-$ chmod 400 ~/.pgpass
- 
 **Required Statement From Retrosheet**
  
 The information used here was obtained free of
 charge from and is copyrighted by Retrosheet.  Interested
 parties may contact Retrosheet at "www.retrosheet.org".
 
+**Docker Setup**
 
-**Apache 2.4+ configuration**
-To configure apache run the ansible playbook cubs_configure.yml 
+In the future this information should be moved into a docker-compose file.
+For now this is the docker setup of this app.
 
-**TODO**  
-Either create a container (docker) or script install with Ansible
+You can build the images your self or use the ones located on [dockerhub](https://hub.docker.com/u/mweltin)
+   
+ - Create docker network: 
+   - $docker network create cubs-net
+ - Create DB container
+   - create the mount point on the docker host /opt/cubs/data
+   - docker run -d -p 5432:5432 --name cubs-db -e POSTGRES_PASSWORD=password --network cubs-net mweltin/cubs-db:ver-1.0.0
+ - Create api endpoint
+   - docker run -d -p 5000:5000 --name cubs-api --network cubs-net mweltin/cubs-api:ver-1.0.0
+ - Create web app container
+  - docker run -d -p 80:80 --name cubs-web --network cubs-net mweltin/cubs-web:ver-1.0.0
+ 
