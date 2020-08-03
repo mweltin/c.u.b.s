@@ -16,6 +16,7 @@ import { BattingAvergeComponent } from './batting-averge/batting-averge.componen
 import { SluggingComponent } from './slugging/slugging.component';
 import { OnBasePercentageComponent } from './on-base-percentage/on-base-percentage.component';
 import { YearSliderComponent } from './year-slider/year-slider.component';
+import { EraComponent } from './era/era.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { YearSliderComponent } from './year-slider/year-slider.component';
     BattingAvergeComponent,
     SluggingComponent,
     OnBasePercentageComponent,
-    YearSliderComponent
+    YearSliderComponent,
+    EraComponent
   ],
   imports: [
     BrowserModule,

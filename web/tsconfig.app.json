@@ -10,6 +10,7 @@
     "src/app/player/player.component.ts"
   ],
   "include": [
-    "src/**/*.d.ts"
+    "src/**/*.d.ts",
+    "src/app/era/colorLegend.ts"
   ]
 }
