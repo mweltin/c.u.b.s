@@ -127,6 +127,12 @@
           }
         }
       }
-    }},
-  "defaultProject": "bbhip"
+    }
+  },
+  "defaultProject": "bbhip",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "less"
+    }
+  }
 }

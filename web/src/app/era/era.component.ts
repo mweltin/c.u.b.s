@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {
   select,
   scaleLinear,
@@ -19,7 +19,8 @@ import { colorLegend } from './colorLegend';
 @Component({
   selector: 'app-era',
   templateUrl: './era.component.html',
-  styleUrls: ['./era.component.less']
+  styleUrls: ['./era.component.less'],
+  encapsulation: ViewEncapsulation.None 
 })
 
 export class EraComponent implements OnInit {
@@ -130,8 +131,6 @@ export class EraComponent implements OnInit {
       }
       );
     
-    console.log(nested);
-    
     colorScale.domain(nested.map(d => d.key));
     
     g.selectAll('.line-path').data(nested)
@@ -147,12 +146,12 @@ export class EraComponent implements OnInit {
         .text(title);
     
     this.svg.append('g')
-      .attr('transform', `translate(790,121)`)
+      .attr('transform', `translate(820,121)`)
       .call(colorLegend, {
         colorScale,
         circleRadius: 13,
         spacing: 30,
-        textOffset: 15
+        textOffset: 20
       });
   };
   
