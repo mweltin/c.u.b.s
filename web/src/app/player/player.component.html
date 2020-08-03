@@ -1,15 +1,20 @@
 <div *ngIf="!player">Loading player data....</div>
-<div class="row" *ngIf="player">
-  <div class="col">
-    <h5 class="card-title">Player: {{player.first}}  {{player.last}}</h5>
+<div *ngIf="player">
+  <div class="row">
+    <div class="col">
+      <h5 class="card-title">Player: {{player.first}} {{player.last}}</h5>
+    </div>
+    <div class="col">
+      <app-pitch-outcome></app-pitch-outcome>
+      <app-batting-averge></app-batting-averge>
+      <app-slugging></app-slugging>
+      <app-on-base-percentage></app-on-base-percentage>
+    </div>
+    <app-year-slider></app-year-slider>
   </div>
-  <div class="col">
-    <app-pitch-outcome></app-pitch-outcome>
-    <app-batting-averge></app-batting-averge>
-    <app-slugging></app-slugging>
-    <app-on-base-percentage></app-on-base-percentage>
+  <div class="row">
+    <div class="col">
+      <app-era></app-era>
+    </div>
   </div>
- <app-year-slider></app-year-slider>
 </div>
-
-
