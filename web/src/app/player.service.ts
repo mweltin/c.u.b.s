@@ -19,6 +19,7 @@ export class PlayerService {
   private battingAverageUrl =  'cgi/batting_average';
   private sluggingUrl =  'cgi/slugging';
   private OBPUrl =  'cgi/on_base_percentage';
+  private ERAUrl =  'cgi/era';
   public selectedPlayer: Player;
   public currentDisplayYear: number;
   // Observable display date sources
@@ -49,7 +50,6 @@ export class PlayerService {
     this.currentDisplayYear = year;
   }
 
-
   getPlayer(id: string): Observable<Player> {
     const url = `${this.playerUrl}?player_id=${id}`;
     return this.http.get<Player>(url);
@@ -77,6 +77,11 @@ export class PlayerService {
 
   getOnBasePercentageByPlayer(player: Player): Observable<any[]> {
     const url = `${this.OBPUrl}/${player.id}`;
+    return this.http.get<any[]>(url);
+  }
+
+  getEarnedRunAverageByPlayer(player: Player): Observable<any[]> {
+    const url = `${this.ERAUrl}/${player.id}`;
     return this.http.get<any[]>(url);
   }
 }
