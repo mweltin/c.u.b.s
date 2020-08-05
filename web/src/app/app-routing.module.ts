@@ -10,7 +10,6 @@ const routes: Routes = [
   { path: 'teams', component: TeamComponent },
   { path: 'player/:player_id', component: PlayerComponent },
   { path: 'roster', component: RosterComponent },
-  { path: 'eratest', component: EraComponent },
   { path: '', redirectTo: 'teams', pathMatch: 'full' }
 ];
 

@@ -34,9 +34,10 @@ export class EraComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.svg = select('svg');
-    this.width = +this.svg.attr('width');
-    this.height = +this.svg.attr('height');
+    this.svg = select('#era-by-day');
+    this.width = 900;
+    this.height = 600;
+    this.svg.attr("viewBox", '0 0 '+this.width+' '+this.height)
     this.playerSrv.getEarnedRunAverageByPlayer(this.playerSrv.selectedPlayer).subscribe(
       (res) => {
         this.render(res);
@@ -45,20 +46,18 @@ export class EraComponent implements OnInit {
   }
 
   render (data) {
-    const title = 'ERA By Day Of The Week';
-    
-    const xValue = d => d.year;
-    const xAxisLabel = 'Year';
-    
-    const yValue = d => +d.era.toFixed(2);
-    const circleRadius = 6;
-    const yAxisLabel = 'ERA';
-    
-    const colorValue = d => d.day_of_week;
-    
-    const margin = { top: 60, right: 160, bottom: 88, left: 105 };
+
+    const margin = { top: 30, right: 300, bottom: 200, left: 30 };
     const innerWidth =this.width - margin.left - margin.right;
     const innerHeight =this.height - margin.top - margin.bottom;
+    const circleRadius = 6;
+
+    const title = 'ERA By Day Of The Week';
+
+
+    const xValue = d => d.year;
+    const yValue = d => +d.era.toFixed(2);
+    const colorValue = d => d.day_of_week;
     
     const xScale = scaleLinear()
       .domain(extent(data, xValue))
@@ -84,27 +83,30 @@ export class EraComponent implements OnInit {
       .tickSize(-innerWidth)
       .tickPadding(10);
     
+    
+    
+
     const yAxisG = g.append('g').call(yAxis);
     yAxisG.selectAll('.domain').remove();
-    
+
+    const yAxisLabel = 'ERA';
     yAxisG.append('text')
         .attr('class', 'axis-label')
-        .attr('y', -60)
-        .attr('x', -innerHeight / 2)
+        .attr('y', -margin.left + 10)
+        .attr('x', - margin.bottom)
         .attr('fill', 'black')
         .attr('transform', `rotate(-90)`)
         .attr('text-anchor', 'middle')
         .text(yAxisLabel);
-    
+
+    const xAxisLabel = 'Year';
     const xAxisG = g.append('g').call(xAxis)
       .attr('transform', `translate(0,${innerHeight})`);
-    
     xAxisG.select('.domain').remove();
-    
     xAxisG.append('text')
         .attr('class', 'axis-label')
-        .attr('y', 80)
-        .attr('x', innerWidth / 2)
+        .attr('y', margin.top + 10)
+        .attr('x', margin.right)
         .attr('fill', 'black')
         .text(xAxisLabel);
     
@@ -117,7 +119,6 @@ export class EraComponent implements OnInit {
       yValue(d.values[d.values.length - 1]);
     
       const sorter = {
-        // "sunday": 0, // << if sunday is first day of week
         "monday": 1,
         "tuesday": 2,
         "wednesday": 3,
@@ -146,18 +147,21 @@ export class EraComponent implements OnInit {
         .attr('d', d => lineGenerator(d.values))
         .attr('stroke', d => colorScale(d.key));
     
+    // title position
     g.append('text')
         .attr('class', 'title')
         .attr('y', -10)
+        .attr('x', innerWidth / 2 )
         .text(title);
     
+    // legend position
     this.svg.append('g')
-      .attr('transform', `translate(820,121)`)
+      .attr('transform', 'translate(' + (this.width - margin.right + 10) + ',121)')
       .call(colorLegend, {
         colorScale,
-        circleRadius: 13,
+        circleRadius: circleRadius,
         spacing: 30,
-        textOffset: 20
+        textOffset: 10
       });
   };
   

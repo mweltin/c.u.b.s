@@ -28,7 +28,7 @@
 
   - name: Copy flask app to cgi 
     copy:
-      src: "{{ project_dir }}/cgi"
+      src: "{{ project_dir }}/api"
       dest: "{{ web_root }}" 
       owner: mweltin
       group: mweltin
@@ -36,7 +36,7 @@
   
   - name: copy bbhipBase.py
     copy:
-      src: "{{ project_dir }}/bbhipBase.py"
+      src: "{{ project_dir }}/api/bbhipBase.py"
       dest: "{{ web_root }}" 
       owner: mweltin
       group: mweltin
@@ -44,7 +44,7 @@
 
   - name: copy constants.py
     copy:
-      src: "{{ project_dir }}/constants.py"
+      src: "{{ project_dir }}/api/constants.py"
       dest: "{{ web_root }}" 
       owner: mweltin
       group: mweltin

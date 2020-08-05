@@ -4,18 +4,17 @@
  
 - import_playbook: playbooks/apache2.yml
   vars:
-    project_dir: '/home/mweltin/PycharmProjects/baseballHacksInPython'
-    angular_dist_dir: "{{project_dir}}/bbhip/dist/bbhip"
+    project_dir: '/home/mweltin/cubs'
+    angular_dist_dir: "{{project_dir}}/web/dist/bbhip"
     doc_root: '/var/www/bbhip'
     web_root: '/var/www'
-    server_name: 'www.mweltin.com'
-    server_alias: 'cubs.mweltin.com'
+    server_name: 'cubs.mweltin.com'
     user: 'mweltin'
     python_home: '/var/www/venv'  
-    python_path: '/var/www:/var/www/cgi'
-    wsgi_file: '/var/www/cgi/bbhip.wsgi' 
-    wsgi_script_alias: '/cgi'
-    cgi_path: '/var/www/cgi'
+    python_path: '/var/www:/var/www/api'
+    wsgi_file: '/var/www/api/bbhip.wsgi' 
+    wsgi_script_alias: '/api'
+    cgi_path: '/var/www/api'
     virtual_host: '192.168.0.2'
 
 - import_playbook: playbooks/ufw.yml

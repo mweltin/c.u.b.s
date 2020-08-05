@@ -10,7 +10,7 @@ import { Observable, Subject } from 'rxjs';
 export class TeamService {
 
   public selectedTeam: Team;
-  private teamUrl = 'cgi/teams';
+  private teamUrl = 'api/teams';
 
   // Observable Team sources
   private selectedTeamSource = new Subject<Team>();

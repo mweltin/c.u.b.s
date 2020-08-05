@@ -37,7 +37,7 @@ describe('player service test', () => {
       expect(post).toEqual(testData);
     });
 
-    const req = httpTestingController.expectOne('cgi/get_player_list.py');
+    const req = httpTestingController.expectOne('api/get_player_list.py');
 
     expect(req.request.method).toEqual('GET');
 
@@ -64,7 +64,7 @@ describe('player service test', () => {
       expect(post).toEqual(testData);
     });
 
-    const req = httpTestingController.expectOne('cgi/get_player.py?player_id=alberta103');
+    const req = httpTestingController.expectOne('api/get_player.py?player_id=alberta103');
 
     expect(req.request.method).toEqual('GET');
 

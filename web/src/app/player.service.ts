@@ -13,13 +13,13 @@ export class PlayerService {
 
   constructor(private http: HttpClient) { }
 
-  private playerUrl = 'cgi/get_player.py';
-  private rosterUrl = 'cgi/roster';
-  private pichOutcomeUrl =  'cgi/pitch_outcome';
-  private battingAverageUrl =  'cgi/batting_average';
-  private sluggingUrl =  'cgi/slugging';
-  private OBPUrl =  'cgi/on_base_percentage';
-  private ERAUrl =  'cgi/era';
+  private playerUrl = 'api/player';
+  private rosterUrl = 'api/roster';
+  private pichOutcomeUrl =  'api/pitch_outcome';
+  private battingAverageUrl =  'api/batting_average';
+  private sluggingUrl =  'api/slugging';
+  private OBPUrl =  'api/on_base_percentage';
+  private ERAUrl =  'api/era';
   public selectedPlayer: Player;
   public currentDisplayYear: number;
   // Observable display date sources
@@ -51,7 +51,7 @@ export class PlayerService {
   }
 
   getPlayer(id: string): Observable<Player> {
-    const url = `${this.playerUrl}?player_id=${id}`;
+    const url = `${this.playerUrl}/${id}`;
     return this.http.get<Player>(url);
   }
 

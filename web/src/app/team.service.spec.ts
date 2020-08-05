@@ -61,7 +61,7 @@ describe('TeamService', () => {
           expect(post).toEqual(testData);
         });
 
-        const req = httpTestingController.expectOne('cgi/get_teams.py');
+        const req = httpTestingController.expectOne('api/get_teams.py');
 
         expect(req.request.method).toEqual('GET');
 
