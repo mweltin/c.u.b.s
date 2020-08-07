@@ -17,8 +17,8 @@ exports.config = {
     browserName: 'chrome',
     chromeOptions:{
       binary: process.env.CHROME_BIN,
-      args: ['--headless', '--disable-gpu', '--window-size=800,600', '--no-sandbox']
-     // args:["--start-maximized", "--start-fullscreen"]
+      //args: ['--headless', '--disable-gpu', '--window-size=800,600', '--no-sandbox']
+      args:["--start-maximized", "--start-fullscreen"]
     }
   },
   directConnect: true,
