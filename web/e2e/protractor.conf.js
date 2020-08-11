@@ -10,17 +10,31 @@ process.env.CHROME_BIN = process.env.CHROME_BIN || require('puppeteer').executab
  */
 exports.config = {
   allScriptsTimeout: 11000,
-  specs: [
-    './src/**/*.e2e-spec.ts'
-  ],
-  capabilities: {
-    browserName: 'chrome',
-    chromeOptions:{
-      binary: process.env.CHROME_BIN,
-      args: ['--headless', '--disable-gpu', '--window-size=800,600', '--no-sandbox']
-     // args:["--start-maximized", "--start-fullscreen"]
-    }
-  },
+
+  multiCapabilities: [{
+    'browserName': 'chrome',
+    binary: process.env.CHROME_BIN,
+    'chromeOptions' : {
+        args: ['--lang=en',
+               '--start-fullscreen',
+               '--window-size=1838,650',
+              '--headless']
+    },
+ 
+    specs: ['**/**.e2e-spec.ts'],
+    exclude: ['**/**.mobile.e2e-spec.ts']
+ },{
+    'browserName': 'chrome',
+    binary: process.env.CHROME_BIN,
+    'chromeOptions' : {
+     args: ['--lang=en',
+            '--window-size=350,650',
+            '--headless']
+    },
+ 
+    specs: ['**/**.mobile.e2e-spec.ts']
+    // and so on
+ }],
   directConnect: true,
   baseUrl: 'http://localhost:4200/',
   framework: 'jasmine',

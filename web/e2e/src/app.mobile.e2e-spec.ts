@@ -8,9 +8,9 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  it('should hide display welcome message', () => {
+  it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('Completely Useless Baseball Statistics');
+    expect(page.getTitleText()).toEqual('');
   });
 
   /*
