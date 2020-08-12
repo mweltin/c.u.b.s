@@ -1,5 +1,5 @@
 import { Component, OnInit, Injectable } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute} from '@angular/router';
 import { Player } from '../player';
 import { PlayerService } from '../player.service';
 import { PitchOutcome } from '../pitchOutcome';
@@ -22,8 +22,7 @@ export class PlayerComponent implements OnInit {
 
   constructor(
     private playerSrv: PlayerService,
-    private route: ActivatedRoute,
-    private router: Router
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {

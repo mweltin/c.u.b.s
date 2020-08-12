@@ -49,7 +49,7 @@ def player(player_id):
         db_port=5432,
         db_name=constants.DB,
     )
-    resp = po.get_player_bio()
+    resp = po.player_bio()
     return jsonify(resp)
 
 

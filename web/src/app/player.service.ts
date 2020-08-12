@@ -3,7 +3,6 @@ import { Player } from './player';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { Team } from './team';
-import { PitchOutcome } from './pitchOutcome';
 
 @Injectable({
   providedIn: 'root'
