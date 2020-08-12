@@ -19,11 +19,13 @@ export class PieChartComponent implements OnInit, OnChanges {
   private chart: any;
   private color = scaleOrdinal(['#4daf4a', '#377eb8', '#ff7f00', '#984ea3']);
   private previousXTouch;
+  private height: number;
+  private width: number;
 
   constructor() { }
 
   ngOnInit(): void {
-    this.setup();
+    
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -70,17 +72,23 @@ export class PieChartComponent implements OnInit, OnChanges {
     this.previousXTouch = e.changedTouches[0].clientX;
   }
 
+  ngAfterViewInit() {    
+    this.setup();
+  }
+
   setup() {
 
-    const height = 190;
-    const width = 250;
     const margin = {top: 80, left: 70, bottom: 0, right: 0};
 
     this.svg = select('[identifier=' + this.identifier + '] svg');
+    this.height = this.svg._groups[0][0].clientHeight;
+    this.width = this.svg._groups[0][0].clientWidth;
+
+    this.svg.attr("viewBox", '0 0 '+ this.width + ' ' + this.height)
 
     this.chart = this.svg.append('g')
-        .attr('width', width)
-        .attr('height', height)
+        .attr('width', this.width)
+        .attr('height', this.height)
       .append('g')
         .attr('transform', `translate(${margin.left}, ${margin.top})`);
 

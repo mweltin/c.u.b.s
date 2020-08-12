@@ -1,8 +1,9 @@
-<div *ngIf="!player">Loading player data....</div>
+<div *ngIf="!player">Error loading player data</div>
 <div *ngIf="player">
   <div class="row">
     <div class="col">
-      <h5 class="card-title">Player: {{player.first}} {{player.last}}</h5>
+      <h4 class="card-title">Player: {{player.first}} {{player.last}}</h4>
+      <h5 class="card-title">Debut: {{player.play_debut | date}} </h5>
     </div>
   </div>
   <div class="row">

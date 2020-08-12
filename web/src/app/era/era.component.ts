@@ -10,8 +10,7 @@ import {
   line,
   curveCatmullRom,
   nest,
-  schemeCategory10,
-  descending
+  schemeCategory10
 } from 'd3';
 
 import { colorLegend } from './colorLegend';
