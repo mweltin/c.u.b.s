@@ -42,6 +42,8 @@ export class PieChartComponent implements OnInit, OnChanges {
   }
 
   scrollCallBack(e) {
+    e.stopPropagation();
+    e.preventDefault();
     if (e.deltaY > 0 && this.currentIndex > 0) {
       this.currentIndex = this.currentIndex - 1;
     } else if (e.deltaY < 0 && this.currentIndex < this.maxIndex) {
