@@ -27,6 +27,7 @@ export class EraComponent implements OnInit {
   width: number;
   height: number;
   svg: any;
+  hasData: boolean;
 
   constructor(
     private playerSrv: PlayerService
@@ -39,7 +40,9 @@ export class EraComponent implements OnInit {
     this.svg.attr("viewBox", '0 0 '+this.width+' '+this.height)
     this.playerSrv.getEarnedRunAverageByPlayer(this.playerSrv.selectedPlayer).subscribe(
       (res) => {
-        this.render(res);
+        if( res.length > 0 ){
+          this.render(res);
+        }
       }
     );
   }
