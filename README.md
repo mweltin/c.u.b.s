@@ -41,5 +41,5 @@ You can build the images your self or use the ones located on [dockerhub](https:
  - Create api endpoint
    - docker run -d --name cubs-api --network cubs-net mweltin/cubs-api:1.1.0
  - Create web app container
-  - docker run -d -p 80:80 --name cubs-web --network cubs-net mweltin/cubs-web:1.2.1
+  - docker run -d -p 80:80 --name cubs-web --network cubs-net mweltin/cubs-web:1.3.0
  
